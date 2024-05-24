@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+</head>
+<body>
+    <script>
+        // Functions
+        // Functions are the main “building blocks” of the program. They allow the code to be called many times without repetition.
+        // We’ve already seen examples of built-in functions, like alert(message), prompt(message, default) and confirm(question).
+
+        // Function Declaration
+        // To create a function we can use a function declaration.
+
+        // function showMessage() {
+        //   alert( 'Hello everyone!' );
+        // }
+        // The function keyword goes first, then goes the name of the function, then a list of parameters between the parentheses 
+        // (comma-separated, empty in the example above, we’ll see examples later) and finally the code of the function,
+        //  also named “the function body”, between curly braces.
+
+        function showMessage() {
+            alert( 'Hello everyone!' );
+        }
+
+        showMessage();
+        showMessage();
+        // The call showMessage() executes the code of the function. Here we will see the message two times.
+
+        // Local variables
+        // A variable declared inside a function is only visible inside that function.
+
+        function showMessage() {
+            let message = "Hello, I'm JavaScript!"; // local variable
+
+            alert( message );
+        }
+
+        showMessage(); // Hello, I'm JavaScript!
+
+        // alert( message ); // Error! message is not defined in this scope
+
+        // Outer variables
+        // A function can access an outer variable as well,
+
+        let userName = 'John';
+
+        function showMessage() {
+            userName = "Bob"; // (1) changed the outer variable
+
+            let message = 'Hello, ' + userName;
+            alert(message);
+        }
+
+        alert( userName ); // John before the function call
+
+        showMessage();
+
+        alert( userName ); 
+
+        // Global variables
+        // Variables declared outside of any function, such as the outer userName in the code above, are called global.
+        // Global variables are visible from any function (unless shadowed by locals).
+
+        // Parameters
+        // We can pass arbitrary data to functions using parameters.
+
+        // In the example below, the function has two parameters: from and text.
+
+        function showMessage(from, text) { // parameters: from, text
+            alert(from + ': ' + text);
+        }
+
+        showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
+        showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+        // When the function is called in lines (*) and (**), the given values are copied to local variables from and text. Then the function uses them.
+
+        // Default values
+        // If a function is called, but an argument is not provided, then the corresponding value becomes undefined.
+
+        // Default parameters in old JavaScript code
+        // Several years ago, JavaScript didn’t support the syntax for default parameters. So people used other ways to specify them.
+        // Nowadays, we can come across them in old scripts.
+
+        // For example, an explicit check for undefined:
+
+        function showMessage(from, text) {
+            if (text === undefined) {
+                text = 'no text given';
+            }
+
+            alert( from + ": " + text );
+        }
+        // …Or using the || operator:
+
+        function showMessage(from, text) {
+            // If the value of text is falsy, assign the default value
+            // this assumes that text == "" is the same as no text at all
+            text = text || 'no text given';
+
+        }
+
+        // Returning a value
+        // A function can return a value back into the calling code as the result.
+
+        function sum(a, b) {
+            return a + b;
+        }
+
+        let result = sum(1, 2);
+        alert( result ); // 3
+
+        function checkAge(age) {
+            if (age >= 18) {
+                return true;
+            } else {
+                return confirm('Do you have permission from your parents?');
+            }
+        }
+
+        let age = prompt('How old are you?', 18);
+
+        if ( checkAge(age) ) {
+            alert( 'Access granted' );
+        } else {
+            alert( 'Access denied' );
+        }
+        // Functions should be short and do exactly one thing.
+        // A function declaration looks like this:
+
+        function name(parameters, delimited, by, comma) {
+            /* code */
+        }
+
+
+        // Tasks
+        // Is "else" required?
+        // The following function returns true if the parameter age is greater than 18.
+        // Otherwise it asks for a confirmation and returns its result:
+
+        function checkAge(age) {
+            if (age > 18) {
+                return true;
+            } else {
+                // ...
+                return confirm('Did parents allow you?');
+            }
+        }
+        // Will the function work differently if else is removed?
+
+        function checkAge(age) {
+            if (age > 18) {
+                return true;
+            }
+            // ...
+            return confirm('Did parents allow you?');
+        }
+        // Is there any difference in the behavior of these two variants?
+        // No difference!
+
+        // Rewrite the function using '?' or '||'
+
+        function checkAge(age) {
+            if (age > 18) {
+                return true;
+            } else {
+                return confirm
+                ('Did parents allow you?');
+              }
+        }
+           
+              // Rewrite it, to perform the same, but without if, in a single line.
+              
+              // Using a question mark operator '?':
+            
+              function checkAge(age) {
+                  return (age > 18) ? true : confirm('Did parents allow you?');
+              }
+              // Using OR || (the shortest variant):
+      
+              function checkAge(age) {
+                  return (age > 18) || confirm('Did parents allow you?');
+              }
+              // Note that the parentheses around age > 18 are not required here. They exist for better readability.
+            
+      
+              // Function pow(x,n)
+              // Write a function pow(x,n) that returns x in power n. Or, in other words, multiplies x by itself n times and returns the result.
+          </script>
+      </body>
+      </html>
+     

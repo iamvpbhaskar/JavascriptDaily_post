@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables and Constants</title>
+</head>
+<body>
+    <script>
+        // Variables
+        // We can declare variables to store data by using the var, let, or const keywords.
+
+        // let – is a modern variable declaration.
+        // var – is an old-school variable declaration. Normally we don’t use it at all, but we’ll cover subtle differences from let in the chapter The old "var", just in case you need them.
+        // const – is like let, but the value of the variable can’t be changed.
+
+        // Tasks
+        // Declare two variables: admin and name.
+        // Assign the value "John" to name.
+        // Copy the value from name to admin.
+        // Show the value of admin using alert (must output “John”).
+
+        // output
+        let admin; // can declare two variables at once
+
+        let name = "John";
+
+        admin = name;
+
+        alert( admin ); // "John"
+
+
+        // Create a variable with the name of our planet. How would you name such a variable?
+        // Create a variable to store the name of a current visitor to a website. How would you name that variable?
+
+
+        // Uppercase const?
+        // Examine the following code:
+
+        const birthday = '18.04.1982';
+
+        const age = someCode(birthday);
+
+        const BIRTHDAY = '18.04.1982'; // make birthday uppercase?
+
+        const AGE = someCode(BIRTHDAY); // make age uppercase?
+        // use upper case for constants that are “hard-coded” birthday is exactly like that.   age is evaluated in run-time
+    </script>
+</body>
+</html>

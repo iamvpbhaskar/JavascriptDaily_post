@@ -1,0 +1,57 @@
+<!-- “use strict”
+The directive looks like a string: "use strict" or 'use strict'. When it is located at the top of a script, the whole script works the “modern” way.
+
+For example:
+
+"use strict";
+
+// this code works the modern way
+... -->
+
+<!-- Please make sure that "use strict" is at the top of your scripts, otherwise strict mode may not be enabled. -->
+<!-- alert("some code");
+// "use strict" below is ignored--it must be at the top
+
+"use strict";
+
+// strict mode is not activated -->
+<!-- 
+Browser console
+When you use a developer console to run code, please note that it doesn’t use strict by default.
+
+Sometimes, when use strict makes a difference, you’ll get incorrect results. -->
+
+<!-- Should we “use strict”? -->
+
+<!-- One could recommend to start scripts with "use strict"… But you know what’s cool? -->
+
+<!-- Modern JavaScript supports “classes” and “modules” – advanced language structures (we’ll surely get to them), that enable use strict automatically. So we don’t need to add the "use strict" directive, if we use them. -->
+
+<!-- So, for now "use strict"; is a welcome guest at the top of your scripts. Later, when your code is all in classes and modules, you may omit it. -->
+
+<!-- As of now, we’ve got to know about use strict in general. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strict Mode - 24 may</title>
+</head>
+<body>
+    <script>
+        // without strict mode
+        x = 10; // will not throw any error
+        console.log(x); // Output: 10
+
+        // with strict mode
+        "use strict";
+        y = 20; // will throw ReferenceError: y is not defined
+        console.log(y); //  line will not execute due to the error 
+    </script>
+</body>
+</html>
+
+<!-- The "use strict" directive enables JavaScript's strict mode. JavaScript's strict mode was introduced in ECMAScript 5.
+It enforces stricter parsing and error handling on the code at runtime. It also helps you write cleaner code and catch errors and bugs that
+ might otherwise go unnoticed. -->
