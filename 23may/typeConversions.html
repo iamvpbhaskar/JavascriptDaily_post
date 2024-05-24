@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Type Conversion  - May 23 2024</title>
+</head>
+<body>
+    <script>
+        // String conversion
+        let value = true;
+        console.log(typeof value); // boolean
+
+        value = String(value); 
+        console.log(typeof value); // string
+
+        // Numeric conversion
+        console.log("6" / "2"); // 3
+
+        let str = "123";
+        console.log(typeof str); // string
+
+        let num = Number(str); 
+        console.log(typeof num); // number
+
+        let age = Number("an arbitrary string instead of a number");
+        console.log(age); // NaN
+
+        console.log(Number("   123   ")); // 123
+        console.log(Number("123z")); // NaN
+        console.log(Number(true)); // 1
+        console.log(Number(false)); // 0
+
+        // Boolean conversion
+        console.log(Boolean(1)); // true
+        console.log(Boolean(0)); // false
+
+        console.log(Boolean("hello")); // true
+        console.log(Boolean("")); // false
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>While and For Loops - 23 May 24</title>
+</head>
+<body>
+    <script>
+        // While loop examples
+        // while syntax
+        console.log("While Loop Examples:");
+        let i = 0;
+        while (i < 3) { // shows 0, then 1, then 2
+            console.log(i);
+            i++;
+        }
+
+        let j = 3;
+        while (j) { // when j becomes 0, the condition becomes falsy, and the loop stops
+            console.log(j);
+            j--;
+        }
+
+        console.log("Do-While Loop Example:");
+        let k = 0;
+        do {
+            console.log(k);
+            k++;
+        } while (k < 3);
+
+        // For loop examples
+        console.log("For Loop Examples:");
+        for (let i = 0; i < 3; i++) { // shows 0, then 1, then 2
+            console.log(i);
+        }
+
+        let l = 0;
+        if (l < 3) {
+            console.log(l);
+            l++;
+        }
+        if (l < 3) {
+            console.log(l);
+            l++;
+        }
+        if (l < 3) {
+            console.log(l);
+            l++;
+        }
+
+        for (let m = 0; m < 3; m++) {
+            console.log(m); // 0, 1, 2
+        }
+        // console.log(m); // This line will cause an error because m is not accessible here.
+    </script>
+</body>
+</html>

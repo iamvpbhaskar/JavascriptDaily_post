@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practice: Switch Statements  - May 23 2024</title>
+</head>
+<body>
+    <script>
+        // The "switch" statement
+        // A switch statement can replace multiple if checks.
+        // switch has one or more case blocks and an optional default.
+
+        // Example 1: Basic switch statement
+        let a = 2 + 2;
+
+        switch (a) {
+            case 3:
+                alert('Too small');
+                break;
+            case 4:
+                alert('Exactly!');
+                break;
+            case 5:
+                alert('Too big');
+                break;
+            default:
+                alert("I don't know such values");
+        }
+
+        // Example 2: Switch with multiple alerts
+        alert('Exactly!');
+        alert('Too big');
+        alert("I don't know such values");
+
+        // Example 3: Switch with expressions in cases
+        let c = "1";
+        let d = 0;
+
+        switch (+c) {
+            case d + 1:
+                alert("this runs, because +a is 1, exactly equals b+1");
+                break;
+            default:
+                alert("this doesn't run");
+        }
+        // +c gives 1
+
+        // Example 4: Grouping of case
+        let b = 3;
+
+        switch (b) {
+            case 4:
+                alert('Right!');
+                break;
+            case 3: // (*) grouped two cases
+            case 5:
+                alert('Wrong!');
+                alert("Why don't you take a math class?");
+                break;
+            default:
+                alert('The result is strange. Really.');
+        }
+        // Now both 3 and 5 show the same message.
+
+        // Example 5: Rewrite the "switch" into an "if"
+        let browser = 'Chrome'; // Change this value to test different branches
+
+        if (browser == 'Edge') {
+            alert("You've got the Edge!");
+        } else if (browser == 'Chrome' || browser == 'Firefox' || browser == 'Safari' || browser == 'Opera') {
+            alert('Okay we support these browsers too');
+        } else {
+            alert('We hope that this page looks ok!');
+        }
+
+        // Example 6: Rewrite if into switch
+        let e = +prompt('e?', '');
+
+        switch (e) {
+            case 0:
+                alert(0);
+                break;
+            case 1:
+                alert(1);
+                break;
+            case 2:
+            case 3:
+                alert('2,3');
+                break;
+        }
+    </script>
+</body>
+</html>

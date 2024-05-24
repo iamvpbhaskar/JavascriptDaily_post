@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison 23-may 24</title>
+</head>
+<body>
+    <script>
+        // Boolean comparisons
+        alert(2 > 1);
+        alert(2 == 1);
+        alert(2 != 1);
+
+        let result = 5 > 4; // assign the result of the comparison
+        alert(result);
+
+        // String comparisons
+        alert('Z' > 'A');
+        alert('Glow' > 'Glee');
+        alert('Bee' > 'Be'); // true
+
+        // Comparison of different types
+        alert('2' > 1); // true, string '2' becomes a number 2
+        alert('01' == 1); // true, string '01' becomes a number 1
+
+        alert(true == 1);
+        alert(false == 0);
+
+        let a = 0;
+        alert(Boolean(a));
+
+        let b = "0";
+        alert(Boolean(b));
+        alert(a == b); // true
+
+        // Strict equality
+        alert(0 == false); // true
+        alert('' == false); // true
+        alert(0 === false); // false, types different
+
+        // null, 0, undefined
+        alert(null === undefined); // false
+        alert(null == undefined); // true
+        // null, 0
+        alert(null > 0); // (1) false
+        alert(null == 0); // (2) false
+        alert(null >= 0); // (3) true
+        alert(undefined > 0); // false (1)
+        alert(undefined < 0); // false (2)
+        alert(undefined == 0); // false (3)
+
+        // Task
+        alert(5 > 4); // true
+        alert("apple" > "pineapple"); // false
+        alert("2" > "12"); // true
+        alert(undefined == null); // true
+        alert(undefined === null); // false
+        alert(null == "\n0\n"); // false
+        alert(null === +"\n0\n"); // false
+    </script>
+</body>
+</html>

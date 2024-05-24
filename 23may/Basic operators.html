@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operators Examples</title>
+</head>
+<body>
+    <script>
+        // Addition +, multiplication *, subtraction -
+        // Remainder
+        alert(5 % 2); // 1, the remainder of 5 divided by 2
+        alert(8 % 3);
+        alert(8 % 4);
+
+        // Exponentiation
+        alert(4 ** (1/2)); // 2 (power of 1/2 is the same as a square root)
+        alert(8 ** (1/3));
+
+        // String concatenation with binary +
+        // Plus operator + sums numbers.
+        let s = "my" + "string";
+        alert(s); // mystring
+
+        // Numeric conversion, unary +
+        // No effect on numbers
+        let x = 1;
+        alert(+x); // 1
+
+        let y = -2;
+        alert(+y); // -2
+
+        // Converts non-numbers
+        alert(+true); // 1
+        alert(+"");   
+
+        // Operator precedence
+        // Assignment
+        let a = 1;
+        let b = 2;
+
+        let c = 3 - (a = b + 1);
+
+        alert(a); // 3
+        alert(c); // 0
+
+        // Chaining 
+        // Chained assignments evaluate from right to left.
+        let d, e, f;
+
+        d = e = f = 2 + 2;
+
+        alert(d); // 4
+        alert(e); // 4
+        alert(f); // 4
+    </script>
+</body>
+</html>
