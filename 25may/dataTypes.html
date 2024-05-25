@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Data Types</title>
+  </head>
+  <body>
+    <h1>JavaScript Data Types</h1>
+    <!-- The number type represents both integer and floating point numbers.
+
+    There are many operations for numbers, e.g. multiplication *, division /, addition +, subtraction -, and so on.
+    
+    Besides regular numbers, there are so-called “special numeric values” which also belong to this data type: Infinity, -Infinity and NaN.
+    
+    Infinity represents the mathematical Infinity ∞. It is a special value that’s greater than any number. -->
+    <!-- 1. Number
+    Represents both integer and floating-point numbers. -->
+    <script>
+      let n = 123;
+      n = 12.345;
+      alert(n);
+    </script>
+    
+      <!-- Special numeric values include Infinity,
+      -Infinity, and NaN. -->
+    
+    <script>
+      alert(1 / 0); // Infinity
+      alert("not a number" / 2); // NaN
+      alert(NaN + 1); // NaN
+    </script>
+
+    <!-- the “number” type cannot safely represent integer values larger than (253-1) (that’s 9007199254740991), or less than -(253-1) for negatives. -->
+    <!-- 2. BigInt -->
+    Used for integers of arbitrary length.
+    <script>
+      const bigInt = 1234567890123456789012345678901234567890n;
+      alert(bigInt);
+    </script>
+
+    3. String
+    A sequence of characters surrounded by quotes.
+    <script>
+      let str = "Hello";
+      let str2 = "Single quotes are ok too";
+      let phrase = `can embed another ${str}`;
+      alert(str, str2, phrase);
+
+      let name1 = "John";
+
+      // embed a variable
+      alert(`Hello, ${name1}!`); // Hello, John!
+
+      // embed an expression
+      alert(`the result is ${1 + 2}`); // the result is 3
+    </script>
+
+    <!-- This type is commonly used to store yes/no values: true means “yes, correct”, and false means “no, incorrect”. -->
+    <!-- 4. Boolean
+    Represents true or false values. -->
+    <script>
+      let isTrue = true;
+      let isFalse = false;
+      alert(isTrue, isFalse);
+      let isGreater = 4 > 1;
+
+      alert(isGreater); // true (the comparison result is "yes")
+    </script>
+
+    <!-- In JavaScript, null is not a “reference to a non-existing object” or a “null pointer” like in some other languages. -->
+    <!-- 5. Null
+    Represents "nothing" or "unknown value". -->
+    <script>
+      let age1 = null;
+      alert(age1); // null
+    </script>
+    <!-- 
+The meaning of undefined is “value is not assigned”.
+
+If a variable is declared, but not assigned, then its value is undefined: -->
+    <!-- 6. Undefined
+    Represents an unassigned value. -->
+    <script>
+      let age2;
+      alert(age2); // undefined
+      age2 = 100;
+      age2 = undefined;
+      alert(age); // undefined
+    </script>
+
+    <!-- 8. Object
+    Used to store collections of data and more complex entities. -->
+    <!-- An object literal is a list of property names:values inside curly braces {}. -->
+
+    <script>
+      let user = {
+        name: "John",
+        age: 30,
+      };
+      alert(user);
+    </script>
+
+    <!-- The typeof Operator -->
+    <!-- Returns the type of the operand as a string. -->
+    <script>
+      alert(typeof undefined); // "undefined"
+      alert(typeof 0); // "number"
+      alert(typeof 10n); // "bigint"
+      alert(typeof true); // "boolean"
+      alert(typeof "foo"); // "string"
+      alert(typeof Symbol("id")); // "symbol"
+      alert(typeof Math); // "object"
+      alert(typeof null); // "object"  // this is an error in the language
+      alert(typeof alert); // "function"
+    </script>
+
+    <!-- Tasks
+    What is the output of the script? -->
+    <script>
+      let name = "Ilya";
+
+      alert(`hello ${1}`); // "hello 1"
+      alert(`hello ${"name"}`); // "hello name"
+      alert(`hello ${name}`); // "hello Ilya"
+    </script>
+  </body>
+</html>
