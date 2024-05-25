@@ -93,18 +93,14 @@ alert(area); // 5000
 <!-- Using ?? with && or || -->
 <!-- Due to safety reasons, JavaScript forbids using ?? together with && and || operators, unless the precedence is explicitly specified with parentheses. -->
 
-<!-- The code below triggers a syntax error: -->
-<script>
-let x2 = 1 && 2 ?? 3; // Syntax error
-</script>
-
 <!-- The limitation is surely debatable, it was added to the language specification with the purpose to avoid programming mistakes, when people start to switch from || to ??. -->
 
 <!-- Use explicit parentheses to work around it: -->
+<script>
+    let x = (1 && 2) ?? 3; // Works
+    alert(x); // 2
+</script>
 
-let x = (1 && 2) ?? 3; // Works
-
-alert(x); // 2
 <!-- Summary
 The nullish coalescing operator ?? provides a short way to choose the first “defined” value from a list.
 
@@ -112,7 +108,7 @@ It’s used to assign default values to variables: -->
 
 // set height=100,
 
- if height is null or undefined
+ <!-- if height is null or undefined -->
 
 height = height ?? 100;
 <!-- The operator ?? has a very low precedence, only a bit higher than ? and =, so consider adding parentheses when using it in an expression. -->
