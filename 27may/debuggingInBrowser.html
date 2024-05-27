@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debugging in browser</title>
+</head>
+<body>
+    <!-- Debugging is the process of finding and fixing errors within a script.
+        It also allows to trace the code step by step to see what exactly is going on. -->
+
+
+        <!-- Console -->
+    <!-- If we press Esc, then a console opens below. We can type commands there and press Enter to execute.
+    After a statement is executed, its result is shown below.
+    For example, here 1+2 results in 3, while the function call hello("debugger") returns nothing, so the result is undefined: -->
+            1+2
+            3
+            hello("debugger");
+            undefined
+   <!--********************************* -->
+
+        <!-- Breakpoints -->
+<!-- 
+        A breakpoint is a point of code where the debugger will automatically pause the JavaScript execution.
+        While the code is paused, we can examine current variables, execute commands in the console etc. In other words, 
+        we can debug it. -->
+
+         <!-- Right click on the line number allows to create a conditional breakpoint. It only triggers when the given expression, 
+    that you should provide when you create it, is truthy. -->
+   <!--********************************* -->
+
+        <!-- The command “debugger” -->
+
+    <script>
+        function hello(name) {
+        let phrase = `Hello, ${name}!`;
+        debugger;  // <-- the debugger stops here
+        say(phrase);
+        }
+    </script>
+    <!-- Such command works only when the development tools are open, otherwise the browser ignores it. -->
+   <!--********************************* -->
+
+    <!-- Pause and look around -->
+    
+    <!-- In our example, hello() is called during the page load, so the easiest way to activate the debugger 
+        (after we’ve set the breakpoints) is to reload the page. So let’s press F5 (Windows, -->
+
+        <!-- As the breakpoint is set, the execution pauses at the 4th line: -->
+      
+        <!-- 
+            function hello (name) { name = "John" 
+            let phrase = `Hello, ${name}!`;          phrase = "Hello, John!"
+
+        ->4th line ->  say (phrase); breakpoint here pauses
+            }
+
+        function say (phrase) {
+             alert(** ${phrase} **`);
+            }    
+        -->
+
+        <!-- Watch – shows current values for any expressions.
+        You can click the plus + and input an expression. The debugger will show its value, automatically recalculating it in the process of execution.
+
+        Call Stack :– shows the nested calls chain. At the current moment the debugger is inside hello() call, 
+        called by a script in index.html (no function there, so it’s called “anonymous”).
+        If you click on a stack item (e.g. “anonymous”), the debugger jumps to the corresponding code, 
+        and all its variables can be examined as well.
+
+        Scope: – current variables.
+        Local shows local function variables. You can also see their values highlighted right over the source.
+        Global has global variables (out of any functions). 
+    -->
+
+
+   <!--********************************* -->
+
+   <!-- Logging -->
+   <!-- To output something to console from our code, there’s console.log function. -->
+   
+   <!-- For instance, this outputs values from 0 to 4 to console: -->
+   <script>
+        // open console to see
+        for (let i = 0; i < 5; i++) {
+        console.log("value,", i);
+         }
+   </script>
+   <!-- to see the log code have to open console using CTRL + shift + i to open console  -->
+
+   
+   
+
+
+  
+
+    <script>
+        
+    </script>
+
+    <script>
+        
+    </script>
+
+    <script>
+        
+    </script>
+
+    <script>
+        
+    </script>
+
+    <script>
+        
+    </script>
+
+    <script>
+        
+    </script>
+
+    <script>
+        
+    </script>
+
+
+    
+</body>
+</html>
