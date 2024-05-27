@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing with mocha - js 27may</title>
+</head>
+<body>
+    
+
+    
+<!-- Automated testing with Mocha -->
+
+<!-- Why do we need tests?
+
+When we write a function, we can usually imagine what it should do: which parameters give which results.
+During development, we can check the function by running it and comparing the outcome with the expected one. For instance, we can do it in the console.
+If something is wrong – then we fix the code, run again, check the result – and so on till it works.
+But such manual “re-runs” are imperfect. -->
+
+<!-- When testing a code by manual re-runs, it’s easy to miss something.
+
+For instance, we’re creating a function f. Wrote some code, testing: f(1) works, 
+but f(2) doesn’t work. We fix the code and now f(2) works. Looks complete?
+But we forgot to re-test f(1). That may lead to an error. -->
+
+<!-- When we develop something, we keep a lot of possible use cases in mind. But it’s hard to expect a programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one. -->
+
+<!-- Automated testing means that tests are written separately, in addition to the code. They run our functions in various ways and compare results with the expected. -->
+
+
+<!-- Behavior Driven Development (BDD)
+Let’s start with a technique named Behavior Driven Development or, in short, BDD.
+
+BDD is three things in one: tests AND documentation AND examples.
+
+To understand BDD, we’ll examine a practical case of development. -->
+
+<!-- Development of “pow”: the spec
+Let’s say we want to make a function pow(x, n) that raises x to an integer power n. 
+We assume that n≥0. -->
+<!-- 
+Before creating the code of pow, we can imagine what the function should do and describe it.
+
+Such description is called a specification or, in short, a spec, and contains descriptions of use cases together with tests for them, like this: -->
+
+<script>
+    describe("pow", function() {
+
+it("raises to n-th power", function() {
+  assert.equal(pow(2, 3), 8);
+});
+
+});
+</script>
+
+<!-- A spec has three main building blocks that you can see above: -->
+<script>
+    // describe("title", function() { ... })
+</script>
+
+<!-- What functionality we’re describing? In our case we’re describing the function pow. 
+    Used to group “workers” – the it blocks. -->
+<script>
+    // it("use case description", function() { ... })
+</script>
+
+<!-- In the title of it we in a human-readable way describe the particular use case, 
+    and the second argument is a function that tests it. -->
+<script>
+assert.equal(value1, value2)
+</script>
+<!-- The code inside it block, if the implementation is correct, should execute without errors. -->
+
+
+
+</body>
+</html>
