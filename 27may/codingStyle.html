@@ -1,0 +1,231 @@
+<!-- Coding Style -->
+
+<!-- the art of programming – to take a complex task and code it in a way that is both correct and human-readable. 
+A good code style greatly assists in that. -->
+
+<!-- Curly Braces -->
+
+<script>
+    if (condition) {
+  // do this
+  // ...and that
+  // ...and that
+}
+</script>
+
+<!-- beginners do like that: -->
+<script>
+    if (n < 0) {alert(`Power ${n} is not supported`);}
+</script>
+
+<!-- never do this:Split to a separate line without braces. -->
+<script>
+    if (n < 0)
+  alert(`Power ${n} is not supported`);
+</script>
+
+<!-- 😏 One line without braces – acceptable, if it’s short: -->
+<script>
+    if (n < 0) alert(`Power ${n} is not supported`);
+</script>
+
+<!-- 😃 The best variant: -->
+<script>
+    if (n < 0) {
+  alert(`Power ${n} is not supported`);
+}
+</script>
+
+<!-- For a very brief code, one line is allowed, e.g. if (cond) return null -->
+
+<!-- Line Length -->
+<!-- No one likes to read a long horizontal line of code. It’s best practice to split them. -->
+
+<!-- // backtick quotes ` allow to split the string into multiple lines -->
+<script>
+let str = `
+  ECMA International's TC39 is a group of JavaScript developers,
+  implementers, academics, and more, collaborating with the community
+  to maintain and evolve the definition of JavaScript.
+`;
+</script>
+
+<!-- And, for if statements: -->
+<script>
+if (
+  id === 123 &&
+  moonPhase === 'Waning Gibbous' &&
+  zodiacSign === 'Libra'
+) {
+  letTheSorceryBegin();
+}
+</script>
+
+<!-- The maximum line length should be agreed upon at the team-level. It’s usually 80 or 120 characters. -->
+
+<!-- Indents -->
+<!-- There are two types of indents: -->
+
+<!-- Horizontal indents: 2 or 4 spaces. -->
+<!-- made using either 2 or 4 spaces using tab button -->
+
+<script>
+    show(parameters,
+     aligned, // 5 spaces padding at the left
+     one,
+     after,
+     another
+  ) 
+  {
+  // ...
+}
+</script>
+
+<!-- Vertical indents: empty lines for splitting code into logical blocks.
+
+Even a single function can often be divided into logical blocks. In the example below, the initialization of variables, the main loop and returning the result are split vertically: -->
+
+<script>
+    function pow(x, n) {
+  let result = 1;
+  //              <--
+  for (let i = 0; i < n; i++) {
+    result *= x;
+  }
+  //              <--
+  return result;
+}
+</script>
+<!-- Insert an extra newline where it helps to make the code more readable. There should not be more than nine lines of code without a vertical indentation. -->
+
+
+<!-- Semicolons -->
+<!-- A semicolon should be present after each statement, -->
+
+<!-- it’s best to use semicolons to avoid possible pitfalls. The majority of developers put semicolons. -->
+
+<!-- 
+Nesting Levels
+Try to avoid nesting code too many levels deep. -->
+
+<!-- instead of adding a nested if conditional like this: -->
+<script>
+for (let i = 0; i < 10; i++) {
+  if (cond) {
+     // <- one more nesting level
+  }
+}
+</script>
+
+<!-- We can write: -->
+<script>
+for (let i = 0; i < 10; i++) {
+  if (!cond) continue;
+    // <- no extra nesting level
+}
+</script>
+
+<!-- A similar thing can be done with if/else and return. -->
+
+<!-- 1st. -->
+<script>
+    function pow(x, n) {
+  if (n < 0) {
+    alert("Negative 'n' not supported");
+  } else {
+    let result = 1;
+
+    for (let i = 0; i < n; i++) {
+      result *= x;
+    }
+
+    return result;
+  }
+}
+</script>
+
+<!-- 2nd -->
+<script>
+    function pow(x, n) {
+  if (n < 0) {
+    alert("Negative 'n' not supported");
+    return;
+  }
+
+  let result = 1;
+
+  for (let i = 0; i < n; i++) {
+    result *= x;
+  }
+
+  return result;
+}
+</script>
+
+<!-- option 2nd is more readable because the “special case” of n < 0 is handled early on.
+ Once the check is done we can move on to the “main” code flow without the need for additional nesting. -->
+
+
+<!-- 
+ Function Placement:-
+If you are writing several “helper” functions and the code that uses them, there are three ways to organize the functions.-->
+
+<!-- 1. Declare the functions above the code that uses them:  -->
+
+<script>
+    // function declarations
+function createElement() {
+//   ...
+}
+
+function setHandler(elem) {
+//   ...
+}
+
+function walkAround() {
+//   ...
+}
+
+// the code which uses them
+let elem1 = createElement();
+setHandler(elem1);
+walkAround();
+</script>
+
+
+
+<!-- 2. Code first, then functions -->
+
+<script>
+    // the code which uses the functions
+let elem = createElement();
+setHandler(elem);
+walkAround();
+
+// --- helper functions ---
+function createElement() {
+//   ...
+}
+
+function setHandler(elem) {
+//   ...
+}
+
+function walkAround() {
+//   ...
+}
+</script>
+
+<!-- 3.Mixed: a function is declared where it’s first used. -->
+<!-- Most of time, the second variant is preferred. -->
+<!-- 
+That’s because when reading code, we first want to know what it does. If the code goes first, then it becomes clear from the start.
+ Then, maybe we won’t need to read the functions at all, especially if their names are descriptive of what they actually do. -->
+
+ 
+
+
+
+
+
+
