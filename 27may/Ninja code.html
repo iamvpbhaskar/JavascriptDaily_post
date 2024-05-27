@@ -1,0 +1,88 @@
+<!-- Ninja code -->
+
+<!-- Try to shorten everything.
+While choosing a name try to use the most abstract word. Like obj, data, value, item, elem and so on. -->
+
+<!-- The ideal name for a variable is data. Use it everywhere you can.  -->
+
+<!-- Name a variable by its type: str, num… -->
+
+<!-- the variable name still means something. It says what’s inside the variable: a string, a number or something else. -->
+
+<!-- The value type is easy to find out by debugging. But what’s the meaning of the variable? Which string/number does it store?
+…But what if there are no more such names? Just add a number: data1, item2, elem5… -->
+
+
+<!-- Only a truly attentive programmer should be able to understand your code. But how to check that? -->
+
+<!-- One of the ways – use similar variable names, like date and data. -->
+
+<!-- Using similar names for same things makes life more interesting and shows your creativity to the public. -->
+
+<!-- For instance, consider function prefixes. If a function shows a message on the screen – start it with display…, like displayMessage. And then if another function shows on the screen something else, like a user name, start it with show… (like showName). -->
+'
+<!-- For instance, the function printPage(page) will use a printer. And the function printText(text) will put the text on-screen. Let an unfamiliar reader think well over similarly named function printMessage: “Where does it put the message? To a printer or on the screen?”. To make it really shine, printMessage(message) should output it in the new window! -->
+
+<!-- Reuse names -->
+
+<!-- Add a new variable only when absolutely necessary. -->
+
+<!-- Instead, reuse existing names. Just write new values into them. -->
+
+<!-- In a function try to use only variables passed as parameters. -->
+
+<!-- That would make it really hard to identify what’s exactly in the variable now. And also where it comes from. 
+    The purpose is to develop the intuition and memory of a person reading the code. A person with weak intuition would have to analyze the code line-by-line and track the changes through every code branch. -->
+
+<!-- An advanced variant of the approach is to covertly (!) replace the value with something alike in the middle of a loop or a function. -->
+<script>
+function ninjaFunction(elem) {
+    // 20 lines of code working with elem
+  
+    elem = clone(elem);
+  
+    // 20 more lines, now working with the clone of the elem!
+  }
+</script>
+
+  <!-- A fellow programmer who wants to work with elem in the second half of the function will be surprised… Only during the debugging, 
+  after examining the code they will find out that they’re working with a clone! -->
+
+  <!-- Underscores for fun -->
+<!-- Put underscores _ and __ before variable names. Like _name or __value. -->
+
+<!-- Use same names for variables inside and outside a function. As simple. No efforts to invent new names. -->
+<script>
+let user = authenticateUser();
+
+function render() {
+  let user = anotherValue();
+//   ...
+//   ...many lines...
+//   ...
+//   ... // <-- a programmer wants to work with user here and...
+//   ...
+}
+</script>
+
+
+<!-- A programmer who jumps inside the render will probably fail to notice that there’s a local user shadowing the outer one.
+Then they’ll try to work with user assuming that it’s the external variable, the result of authenticateUser()… The trap is sprung! Hello, debugger… -->
+
+<!-- There are functions that look like they don’t change anything. Like isReady(), checkPermission(), findTags()… 
+    They are assumed to carry out calculations, find and return the data, without changing anything outside of them. In other words, without “side-effects”.
+A really beautiful trick is to add a “useful” action to them, besides the main task.
+
+An expression of dazed surprise on the face of your colleague when they see a function named is.., check.. or find... changing something – will definitely broaden your boundaries of reason.
+Another way to surprise is to return a non-standard result.
+
+Show your original thinking! Let the call of checkPermission return not true/false, but a complex object with the results of the check.
+Those developers who try to write if (checkPermission(..)), will wonder why it doesn’t work. Tell them: “Read the docs!”. And give this article. -->
+<!-- 
+Don’t limit the function by what’s written in its name. Be broader.
+
+For instance, a function validateEmail(email) could (besides checking the email for correctness) show an error message and ask to re-enter the email.
+
+Additional actions should not be obvious from the function name. A true ninja coder will make them not obvious from the code as well.
+
+Joining several actions into one protects your code from reuse. -->
