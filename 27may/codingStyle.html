@@ -222,9 +222,48 @@ function walkAround() {
 That’s because when reading code, we first want to know what it does. If the code goes first, then it becomes clear from the start.
  Then, maybe we won’t need to read the functions at all, especially if their names are descriptive of what they actually do. -->
 
- 
+ <!-- What’s wrong with the code style below? -->
+
+    <!-- function pow(x,n)
+{
+  let result=1;
+  for(let i=0;i<n;i++) {result*=x;}
+  return result;
+}
+
+let x=prompt("x?",''), n=prompt("n?",'')
+if (n<=0)
+{
+  alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
+}
+else
+{
+  alert(pow(x,n))
+} -->
 
 
+<!-- Fix : -->
+<script>
+    function pow(x, n) {
+  let result = 1;
+
+  for (let i = 0; i < n; i++) {
+    result *= x;
+  }
+
+  return result;
+}
+
+let x = prompt("x?", "");
+let n = prompt("n?", "");
+
+if (n <= 0) {
+  alert(`Power ${n} is not supported,
+    please enter an integer number greater than zero`);
+} else {
+  alert( pow(x, n) );
+}
+</script>
 
 
 
