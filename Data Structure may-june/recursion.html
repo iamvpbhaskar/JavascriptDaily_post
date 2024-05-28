@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Recursion</title>
+    <script>
+      /* function apple(x) {
+           console.warn(x)  
+
+           if(x<10){  // ading condition that apple will call untill x<10 
+            apple(x+1);
+           }
+        //    apple(); it creates infinite loop by default
+        }
+
+        let data = 0;
+        apple(data); 
+*/
+
+      function factorial(item) {
+        if (item == 0) {
+          return 1;
+        }
+        return item * factorial(item - 1);
+      }
+      let number = parseInt(
+        prompt("Enter a number to calculate its factorial:")
+      );
+
+      console.warn(factorial(number));
+
+      // console.warn(5*factorial(5-1)*factorial(4-1)*factorial(3-1)*factorial(2-1)*factorial(1-1)
+    </script>
+  </head>
+  <body>
+    <h1>Recursion</h1>
+  </body>
+</html>
+
+<!-- //FACTORIAL  another way through user
+
+/*function factorial(num) {
+   if (num === 0) {
+       return 1;
+   } else {
+       return num * factorial(num - 1);
+   }
+}
+// Ask the user for input
+let number = parseInt(prompt("Enter a number to calculate its factorial:"));
+
+// Check if the input is a valid number
+if (!isNaN(number)) {
+   console.log("Factorial of", number, "is", factorial(number));
+} else {
+   console.log("Invalid input. Please enter a valid number.");
+}
+*/ -->
