@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>objects</title>
+</head>
+<body>
+    
+    <!-- Objects are used to store keyed collections of various data and more complex entities. 
+    An object can be created with figure brackets {…} with an optional list of properties. 
+    A property is a “key: value” pair, where key is a string (also called a “property name”), and value can be anything.
+
+    An empty object (“empty cabinet”) can be created using one of two syntaxes: -->
+<script>
+let user1 = new Object(); // "object constructor" syntax
+let user2 = {};  // "object literal" syntax
+</script>
+<!-- Usually, the figure brackets {...} are used. That declaration is called an object literal.
+
+Literals and properties
+We can immediately put some properties into {...} as “key: value” pairs: -->
+<script>
+let user3 = {     // an object
+  name: "John",  // by key "name" store value "John"
+  age: 30        // by key "age" store value 30
+};
+</script>
+<!-- A property has a key (also known as “name” or “identifier”) before the colon ":" and a value to the right of it.
+
+In the user object, there are two properties:
+
+The first property has the name "name" and the value "John".
+The second one has the name "age" and the value 30.
+The resulting user object can be imagined as a cabinet with two signed files labeled “name” and “age”.
+
+We can add, remove and read files from it at any time.
+
+Property values are accessible using the dot notation: -->
+<script>
+// get property values of the object:
+alert( user.name ); // John
+alert( user.age ); // 30
+// The value can be of any type. Let’s add a boolean one:
+user.isAdmin = true;
+</script>
+
+<script>
+    // To remove a property, we can use the delete operator:
+delete user.age;
+</script>
+
+<!-- // We can also use multiword property names, but then they must be quoted: -->
+<script>
+let user4 = {
+  name: "John",
+  age: 30,
+  "likes birds": true  // multiword property name must be quoted
+};
+</script>
+
+<script>
+// The last property in the list may end with a comma:
+let user5 = {
+  name: "John",
+  age: 30,
+}
+// That is called a “trailing” or “hanging” comma. Makes it easier to add/remove/move around properties, because all lines become alike.
+</script>
+
+
+<!-- Square brackets
+For multiword properties, the dot access doesn’t work: -->
+<script>
+// this would give a syntax error
+// user.likes birds = true
+</script>
+
+<!-- The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn’t start with a digit and doesn’t include special characters ($ and _ are allowed).
+
+There’s an alternative “square bracket notation” that works with any string: -->
+<script>
+let user = {};
+
+// set
+user["likes birds"] = true;
+
+// get
+alert(user["likes birds"]); // true
+
+// delete
+delete user["likes birds"];
+// Now everything is fine.
+</script>
+
+<script>
+let key = "likes birds";
+
+// same as user["likes birds"] = true;
+user[key] = true;
+// Here, the variable key may be calculated at run-time or depend on the user input. 
+// And then we use it to access the property. That gives us a great deal of flexibility.
+</script>
+
+<!-- For instance: -->
+<script>
+let user6 = {
+  name: "John",
+  age: 30
+};
+</script>
+
+<script>
+let key1 = prompt("What do you want to know about the user?", "name");
+
+// access by variable
+alert( user[key] ); // John (if enter "name")
+// The dot notation cannot be used in a similar way:
+
+let user = {
+  name: "John",
+  age: 30
+};
+
+let key2 = "name";
+alert( user.key ) // undefined
+</script>
+
+<!-- Computed properties
+We can use square brackets in an object literal, when creating an object. That’s called computed properties.
+
+For instance:
+
+let fruit = prompt("Which fruit to buy?", "apple");
+
+let bag = {
+  [fruit]: 5, // the name of the property is taken from the variable fruit
+};
+
+alert( bag.apple ); // 5 if fruit="apple"
+The meaning of a computed property is simple: [fruit] means that the property name should be taken from fruit.
+
+So, if a visitor enters "apple", bag will become {apple: 5}. -->
+
+
+<!-- Property value shorthand
+In real code, we often use existing variables as values for property names.
+
+For instance: -->
+<script>
+function makeUser(name, age) {
+  return {
+    name: name,
+    age: age,
+    // ...other properties
+  };
+}
+
+</script>
+<script>
+let user = makeUser("John", 30);
+alert(user6.name); // John
+// In the example above, properties have the same names as variables. 
+// The use-case of making a property from a variable is so common, that there’s a special property value shorthand to make it shorter.
+</script>
+
+
+<!-- Instead of name:name we can just write name, like this: -->
+<script>
+function makeUser(name, age) {
+  return {
+    name, // same as name: name
+    age,  // same as age: age
+    // ...
+  };
+}
+// We can use both normal properties and shorthands in the same object:
+
+let user = {
+  name,  // same as name:name
+  age: 30
+};
+</script>
+
+
+<!-- Property names limitations
+As we already know, a variable cannot have a name equal to one of the language-reserved words like “for”, “let”, “return” etc.
+
+But for an object property, there’s no such restriction: -->
+
+<script>
+// these properties are all right
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6
+</script>
+
+<!-- In short, there are no limitations on property names. They can be any strings or symbols (a special type for identifiers, to be covered later).
+
+Other types are automatically converted to strings.
+
+For instance, a number 0 becomes a string "0" when used as a property key: -->
+<script>
+let obj1 = {
+  0: "test" // same as "0": "test"
+};
+
+// both alerts access the same property (the number 0 is converted to string "0")
+alert( obj1["0"] ); // test
+alert( obj1[0] ); // test (same property)
+
+
+</script>
+
+</body>
+</html>

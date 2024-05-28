@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Reverse Array with Recursion</title>
+    <script>
+      let data = [5, 12, 65, 89, 0, 100, 200];
+      let temp;
+      function dataReverse(data, start, end) {
+        console.warn(data);
+        if (start <= end) {
+          temp = data[start];
+          data[start] = data[end];
+          data[end] = temp;
+          dataReverse(data, start + 1, end - 1);
+        }
+      }
+
+      dataReverse(data, 0, data.length - 1);
+    </script>
+  </head>
+  <body>
+    <h1>Reverse Array with Recursion</h1>
+  </body>
+</html>
