@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects - this method</title>
+</head>
+<body>
+    
+    <!-- Object methods, "this" -->
+
+<!-- Objects are usually created to represent entities of the real world, like users, orders and so on: -->
+<script>
+    let user1 = {
+      name: "John",
+      age: 30
+    };
+    </script>
+    
+    <!-- And, in the real world, a user can act: select something from the shopping cart, login, logout etc.
+    
+    Actions are represented in JavaScript by functions in properties.
+    
+    Method examples
+    For a start, let’s teach the user to say hello: -->
+    
+    <script>
+        let user2 = {
+      name: "John",
+      age: 30
+    };
+    user2.sayHi = function() {
+      alert("Hello!");
+    };
+    user2.sayHi(); // Hello!
+    </script>
+    
+    
+    <!-- Here we’ve just used a Function Expression to create a function and assign it to the property user.sayHi of the object. -->
+    <!-- Then we can call it as user.sayHi(). The user can now speak!
+    
+    A function that is a property of an object is called its method.
+    
+    So, here we’ve got a method sayHi of the object user. -->
+    
+    <!-- Object-oriented programming
+    When we write our code using objects to represent entities, that’s called object-oriented programming, in short: “OOP”. -->
+    
+    Method shorthand
+    There exists a shorter syntax for methods in an object literal:
+    <script>
+    // these objects do the same
+    
+    user3 = {
+      sayHi: function() {
+        alert("Hello");
+      }
+    };
+    
+    // method shorthand looks better, right?
+    user3 = {
+      sayHi() { // same as "sayHi: function(){...}"
+        alert("Hello");
+      }
+    };
+    </script>
+    <!-- As demonstrated, we can omit "function" and just write sayHi(). -->
+    
+    <!-- this” in methods
+    It’s common that an object method needs to access the information stored in the object to do its job.
+    
+    For instance, the code inside user.sayHi() may need the name of the user.
+    
+    
+    
+    To access the object, a method can use the this keyword. -->
+    <script>
+    let user4 = {
+        name: "John",
+        age: 30,
+      
+        sayHi() {
+          // "this" is the "current object"
+          alert(this.name);
+        }
+      
+      };
+      
+      user4.sayHi(); // John
+    //   Here during the execution of user.sayHi(), the value of this will be user.
+    </script>
+    
+    <!-- “this” is not bound
+    In JavaScript, keyword this behaves unlike most other programming languages. It can be used in any function, even if it’s not a method of an object.
+    
+    There’s no syntax error in the following example: -->
+    <script>
+    function sayHi() {
+      alert( this.name );
+    }
+    // The value of this is evaluated during the run-time, depending on the context.
+    </script>
+    
+    <!-- Calling without an object: this == undefined
+    We can even call the function without an object at all: -->
+    <script>
+    function sayHi() {
+      alert(this);
+    }
+    
+    sayHi(); // undefined
+    // In this case this is undefined in strict mode. If we try to access this.name, there will be an error.
+    </script>
+    
+    <!-- In non-strict mode the value of this in such case will be the global object (window in a browser, 
+    we’ll get to it later in the chapter Global object). This is a historical behavior that "use strict" fixes.
+    
+    Usually such call is a programming error. If there’s this inside a function, it expects to be called in an object context. -->
+    
+    
+    
+    <!-- Arrow functions have no “this”
+    Arrow functions are special: they don’t have their “own” this. If we reference this from such a function, it’s taken from the outer “normal” function.
+    
+    For instance, here arrow() uses this from the outer user.sayHi() method: -->
+    <script>
+    let user7 = {
+      firstName: "Ilya",
+      sayHi() {
+        let arrow = () => alert(this.firstName);
+        arrow();
+      }
+    };
+    
+    user7.sayHi(); // Ilya
+    </script>
+    
+    <!-- That’s a special feature of arrow functions,
+         it’s useful when we actually do not want to have a separate this, 
+         but rather to take it from the outer context. Later in the chapter Arrow functions revisited we’ll go more deeply into arrow functions. -->
+</body>
+</html>
