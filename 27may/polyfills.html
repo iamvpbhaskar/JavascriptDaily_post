@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>polyfills js</title>
+</head>
+<body>
+    
+
+<!-- Polyfills :
+
+This is code snippets or libraries that provide modern functionality in older browsers that don't natively support it.
+ For example, if a newer JavaScript method or API is not supported in older versions of Internet Explorer,
+a polyfill can be used to replicate that functionality using older, more widely supported methods. 
+Polyfills essentially "fill in" the gaps left by browser vendors. -->
+
+<!-- For example, Math.trunc(n) is a function that “cuts off” the decimal part of a number, e.g Math.trunc(1.23) returns 1. -->
+
+<!-- In some (very outdated) JavaScript engines, there’s no Math.trunc, so such code will fail. -->
+
+<!-- A script that updates/adds new functions is called “polyfill”.
+ It “fills in” the gap and adds missing implementations.
+
+ the polyfill for Math.trunc is a script that implements it, like this: -->
+
+ <script>
+    if (!Math.trunc) { // if no such function
+  // implement it
+  Math.trunc = function(number) {
+    // Math.ceil and Math.floor exist even in ancient JavaScript engines
+    // they are covered later in the tutorial
+    return number < 0 ? Math.ceil(number) : Math.floor(number);
+  };
+}
+ </script>
+
+<!-- JavaScript is a highly dynamic language. Scripts may add/modify any function, even built-in ones.
+
+Two interesting polyfill libraries are:
+
+core js that supports a lot, allows to include only needed features.
+polyfill.io service that provides a script with polyfills, depending on the features and user’s browser. -->
+
+<!-- ********************************************************** -->
+
+<!-- Transpilers:
+These are tools that convert source code written in one programming language to another.
+ In the context of web development, the most common use of transpilers is to convert newer versions of JavaScript (ES6/ES7)
+  into older versions (ES5) that are compatible with a wider range of browsers. This process is often referred to as "transpiling" 
+  because the code is transformed rather than simply being translated.
+
+
+
+  The most popular JavaScript transpiler is Babel, 
+  which allows developers to write code using the latest language features while still ensuring compatibility with older browsers. -->
+<!-- 
+E.g. JavaScript before year 2020 didn’t have the “nullish coalescing operator” ??.
+ So, if a visitor uses an outdated browser, 
+ it may fail to understand the code like height = height ?? 100. -->
+
+<!-- A transpiler would analyze our code and rewrite height ?? 100 into (height !== undefined && height !== null) ? height : 100 -->
+
+<script>
+    // before running the transpiler
+height = height ?? 100;
+
+// after running the transpiler
+height = (height !== undefined && height !== null) ? height : 100;
+</script>
+
+<!-- Now the rewritten code is suitable for older JavaScript engines.
+
+Usually, a developer runs the transpiler on their own computer, and then deploys the transpiled code to the server.
+
+Speaking of names, Babel is one of the most prominent transpilers out there.
+
+Modern project build systems, such as webpack, provide a means to run a transpiler automatically on every code change, so it’s very easy to integrate into the development process. -->
+
+
+<!-- Summary -->
+<!-- polyfills: 
+  that enable developers to use modern JavaScript features in older browsers by providing fallback functionality,while
+ transpilers:
+ allow developers to write code using the latest language features and then convert it into a form that is compatible with older browsers. 
+  
+ Both polyfills and transpilers are essential tools for web developers who need to support a wide range of browsers -->
+
+ 
+
+</body>
+</html>
