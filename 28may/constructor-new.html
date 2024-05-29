@@ -1,0 +1,266 @@
+<!-- Constructor, operator "new"
+The regular {...} syntax allows us to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+
+That can be done using constructor functions and the "new" operator.
+
+Constructor function
+Constructor functions technically are regular functions. There are two conventions though:
+
+They are named with capital letter first.
+They should be executed only with "new" operator.
+For instance: -->
+<script>
+function User(name) {
+  this.name = name;
+  this.isAdmin = false;
+}
+
+let user = new User("Jack");
+
+alert(user.name); // Jack
+alert(user.isAdmin); // false
+</script>
+
+<!-- When a function is executed with new, it does the following steps:
+
+A new empty object is created and assigned to this.
+The function body executes. Usually it modifies this, adds new properties to it.
+The value of this is returned.
+
+
+In other words, new User(...) does something like: -->
+<script>
+function User(name) {
+  // this = {};  (implicitly)
+
+  // add properties to this
+  this.name = name;
+  this.isAdmin = false;
+
+  // return this;  (implicitly)
+}
+</script>
+
+
+<!-- So let user = new User("Jack") gives the same result as: -->
+<script>
+let user2 = {
+  name: "Jack",
+  isAdmin: false
+};
+</script>
+<!-- Now if we want to create other users, we can call new User("Ann"), new User("Alice") and so on. Much shorter than using literals every time, and also easy to read.
+
+That’s the main purpose of constructors – to implement reusable object creation code.
+ -->
+
+ <!-- new function() { … }
+If we have many lines of code all about creation of a single complex object, we can wrap them in an immediately called constructor function, like this: -->
+<script>
+// create a function and immediately call it with new
+let user3 = new function() {
+  this.name = "John";
+  this.isAdmin = false;
+
+  // ...other code for user creation
+  // maybe complex logic and statements
+  // local variables etc
+};
+</script>
+
+<!-- This constructor can’t be called again, because it is not saved anywhere, 
+just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse. -->
+
+<!-- Constructor mode test: new.target 
+Inside a function, we can check whether it was called with new or without it, using a special new.target property.
+
+It is undefined for regular calls and equals the function if called with new: -->
+<script>
+function User() {
+  alert(new.target);
+}
+
+// without "new":
+User(); // undefined
+
+// with "new":
+new User(); // function User { ... }
+</script>
+
+<!-- That can be used inside the function to know whether it was called with new, “in constructor mode”, or without it, “in regular mode”.
+We can also make both new and regular calls to do the same, like this: -->
+<script>
+function User(name) {
+  if (!new.target) { // if you run me without new
+    return new User(name); // ...I will add new for you
+  }
+
+  this.name = name;
+}
+
+let john = User("John"); // redirects call to new User
+alert(john.name); // John
+</script>
+
+<!-- This approach is sometimes used in libraries to make the syntax more flexible. So that people may call the function with or without new, and it still works. -->
+
+<!-- Usually, constructors do not have a return statement. Their task is to write all necessary stuff into this, and it automatically becomes the result.
+
+But if there is a return statement, then the rule is simple:
+
+If return is called with an object, then the object is returned instead of this.
+If return is called with a primitive, it’s ignored.
+In other words, return with an object returns that object, in all other cases this is returned.
+
+For instance, here return overrides this by returning an object: -->
+<script>
+function BigUser() {
+
+this.name = "John";
+
+return { name: "Godzilla" };  // <-- returns this object
+}
+
+alert( new BigUser().name );  // Godzilla, got that object
+</script>
+
+<!-- And here’s an example with an empty return (or we could place a primitive after it, doesn’t matter): -->
+<script>
+function SmallUser() {
+this.name = "John";
+return; // <-- returns this
+}
+alert( new SmallUser().name );  // John
+</script>
+
+<!-- Usually constructors don’t have a return statement. Here we mention the special behavior with returning objects mainly for the sake of completeness. -->
+
+By the way, we can omit parentheses after new:
+<script>
+let user5 = new User; // <-- no parentheses
+// same as
+let user4 = new User();
+</script>
+
+<!-- Omitting parentheses here is not considered a “good style”, but the syntax is permitted by specification. -->
+
+<!-- we can add to this not only properties, but methods as well.
+
+For instance, new User(name) below creates an object with the given name and the method sayHi: -->
+<script>
+function User(name) {
+  this.name = name;
+
+  this.sayHi = function() {
+    alert( "My name is: " + this.name );
+  };
+}
+
+let johny = new User("John");
+
+johny.sayHi(); // My name is: John
+
+/*
+john = {
+   name: "John",
+   sayHi: function() { ... }
+}
+*/
+</script>
+
+<!-- To create complex objects, there’s a more advanced syntax, classes, that we’ll cover later -->
+<!-- 
+Constructor functions or, briefly, constructors, are regular functions, but there’s a common agreement to name them with capital letter first.
+Constructor functions should only be called using new. Such a call implies a creation of empty this at the start and returning the populated one at the end.
+We can use constructor functions to make multiple similar objects.
+
+JavaScript provides constructor functions for many built-in language objects: like Date for dates, Set for sets and others that we plan to study. -->
+
+
+
+<!-- Tasks
+Create new Calculator
+Create a constructor function Calculator that creates objects with 3 methods: -->
+
+<!-- read() prompts for two values and saves them as object properties with names a and b respectively.
+sum() returns the sum of these properties.
+mul() returns the multiplication product of these properties. -->
+
+<!-- For instance:
+
+let calculator = new Calculator();
+calculator.read();
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() ); -->
+
+
+
+<!-- solution: -->
+<script>
+    function Calculator() {
+
+this.read = function() {
+  this.a = +prompt('a?', 0);
+  this.b = +prompt('b?', 0);
+};
+
+this.sum = function() {
+  return this.a + this.b;
+};
+
+this.mul = function() {
+  return this.a * this.b;
+};
+}
+
+let calculator = new Calculator();
+calculator.read();
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
+</script>
+
+
+<!-- Create new Accumulator
+importance: 5
+Create a constructor function Accumulator(startingValue).
+
+Object that it creates should:
+
+Store the “current value” in the property value. The starting value is set to the argument of the constructor startingValue.
+The read() method should use prompt to read a new number and add it to value.
+In other words, the value property is the sum of all user-entered values with the initial value startingValue.
+
+Here’s the demo of the code:
+
+let accumulator = new Accumulator(1); // initial value 1
+
+accumulator.read(); // adds the user-entered value
+accumulator.read(); // adds the user-entered value
+
+alert(accumulator.value); // shows the sum of these values -->
+
+
+Solution:
+<script>
+    function Accumulator(startingValue) {
+  this.value = startingValue;
+
+  this.read = function() {
+    this.value += +prompt('How much to add?', 0);
+  };
+
+}
+
+let accumulator = new Accumulator(1);
+accumulator.read();
+accumulator.read();
+alert(accumulator.value);
+</script>
+
+
+
+
+
+
