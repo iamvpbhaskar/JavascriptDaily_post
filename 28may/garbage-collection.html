@@ -1,4 +1,12 @@
-<!-- Garbage collection
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>garbage collection</title>
+</head>
+<body>
+  <!-- Garbage collection
 Memory management in JavaScript is performed automatically and invisibly to us. We create primitives, objects, functions… All that takes memory.-->
 
 <!-- How Garbage Collection Works
@@ -39,132 +47,134 @@ Concurrent Collection: The garbage collector runs in parallel with the applicati
 <!-- Example -->
 
 <script>
-function createObjects() {
-    let obj1 = { name: 'object1' };
-    let obj2 = { name: 'object2' };
-
-    obj1.reference = obj2; // obj1 references obj2
-    obj2.reference = obj1; // obj2 references obj1
-
-    // obj1 and obj2 are reachable from the root (local scope)
-    return obj1;
-}
-
-let globalObj = createObjects();
-
-// After createObjects() execution, obj1 and obj2 are still reachable through globalObj
-// When globalObj is set to null, obj1 and obj2 may become garbage collected
-
-globalObj = null;
-</script>
-// Now, obj1 and obj2 are not reachable, making them eligible for garbage collection
-
-<!-- 
-Reachability
-The main concept of memory management in JavaScript is reachability.
-
-Simply put, “reachable” values are those that are accessible or usable somehow. They are guaranteed to be stored in memory.
-
-There’s a background process in the JavaScript engine that is called garbage collector. It monitors all objects and removes those that have become unreachable. -->
-
-<!-- Here’s the simplest example:  -->
-<script>
-// user has a reference to the object
-let user = {
-  name: "John"
-};
-</script>
-
-<!-- The global variable "user" references the object {name: "John"} (we’ll call it John for brevity). The "name" property of John stores a primitive, so it’s painted inside the object.
-
-If the value of user is overwritten, the reference is lost: -->
-<script>
-user = null;
-</script>
-
-<!-- Now John becomes unreachable. 
-    There’s no way to access it, no references to it. 
-    Garbage collector will junk the data and free the memory. -->
-
-
-
-<!-- Now if we do the same: -->
-<script>
-    user = null;
-</script>
-<!-- …Then the object is still reachable via admin global variable, so it must stay in memory. 
-If we overwrite admin too, then it can be removed. -->
-
-
-
-<!-- Now a more complex example. The family: -->
-<script>
-function marry(man, woman) {
-  woman.husband = man;
-  man.wife = woman;
-
-  return {
-    father: man,
-    mother: woman
+  function createObjects() {
+      let obj1 = { name: 'object1' };
+      let obj2 = { name: 'object2' };
+  
+      obj1.reference = obj2; // obj1 references obj2
+      obj2.reference = obj1; // obj2 references obj1
+  
+      // obj1 and obj2 are reachable from the root (local scope)
+      return obj1;
   }
-}
-
-let family = marry({
-  name: "John"
-}, {
-  name: "Ann"
-});
-</script>
-
-<!-- Function marry “marries” two objects by giving them references to each other and returns a new object that contains them both. -->
-
-
-<!-- 
-As of now, all objects are reachable.
-
-Now let’s remove two references: -->
-<script>
-delete family.father;
-delete family.mother.husband;
-</script>
-
-
-<!-- Outgoing references do not matter. Only incoming ones can make an object reachable. So, John is now unreachable and will be removed from the memory with all its data that also became unaccessible.
-
-After garbage collection: 
-
-Unreachable island
-It is possible that the whole island of interlinked objects becomes unreachable and is removed from the memory.
-
-The source object is the same as above. Then: -->
-<script>
-family = null;
-</script>
-
-<!-- It’s obvious that John and Ann are still linked, both have incoming references. But that’s not enough.
-
-The former "family" object has been unlinked from the root, there’s no reference to it any more, so the whole island becomes unreachable and will be removed. -->
-
-
-
-<!-- Internal algorithms
-The basic garbage collection algorithm is called “mark-and-sweep”.
-
-The following “garbage collection” steps are regularly performed:
-
-The garbage collector takes roots and “marks” (remembers) them.
-Then it visits and “marks” all references from them.
-Then it visits marked objects and marks their references. All visited objects are remembered, so as not to visit the same object twice in the future.
-…And so on until every reachable (from the roots) references are visited.
-All objects except marked ones are removed. -->
-
-
-
-
-<!-- 
-Summary
-The main things to know:
-
-Garbage collection is performed automatically. We cannot force or prevent it.
-Objects are retained in memory while they are reachable.
-Being referenced is not the same as being reachable (from a root): a pack of interlinked objects can become unreachable as a whole, as we’ve seen in the example above. -->
+  
+  let globalObj = createObjects();
+  
+  // After createObjects() execution, obj1 and obj2 are still reachable through globalObj
+  // When globalObj is set to null, obj1 and obj2 may become garbage collected
+  
+  globalObj = null;
+  </script>
+  // Now, obj1 and obj2 are not reachable, making them eligible for garbage collection
+  
+  <!-- 
+  Reachability
+  The main concept of memory management in JavaScript is reachability.
+  
+  Simply put, “reachable” values are those that are accessible or usable somehow. They are guaranteed to be stored in memory.
+  
+  There’s a background process in the JavaScript engine that is called garbage collector. It monitors all objects and removes those that have become unreachable. -->
+  
+  <!-- Here’s the simplest example:  -->
+  <script>
+  // user has a reference to the object
+  let user = {
+    name: "John"
+  };
+  </script>
+  
+  <!-- The global variable "user" references the object {name: "John"} (we’ll call it John for brevity). The "name" property of John stores a primitive, so it’s painted inside the object.
+  
+  If the value of user is overwritten, the reference is lost: -->
+  <script>
+  user = null;
+  </script>
+  
+  <!-- Now John becomes unreachable. 
+      There’s no way to access it, no references to it. 
+      Garbage collector will junk the data and free the memory. -->
+  
+  
+  
+  <!-- Now if we do the same: -->
+  <script>
+      user = null;
+  </script>
+  <!-- …Then the object is still reachable via admin global variable, so it must stay in memory. 
+  If we overwrite admin too, then it can be removed. -->
+  
+  
+  
+  <!-- Now a more complex example. The family: -->
+  <script>
+  function marry(man, woman) {
+    woman.husband = man;
+    man.wife = woman;
+  
+    return {
+      father: man,
+      mother: woman
+    }
+  }
+  
+  let family = marry({
+    name: "John"
+  }, {
+    name: "Ann"
+  });
+  </script>
+  
+  <!-- Function marry “marries” two objects by giving them references to each other and returns a new object that contains them both. -->
+  
+  
+  <!-- 
+  As of now, all objects are reachable.
+  
+  Now let’s remove two references: -->
+  <script>
+  delete family.father;
+  delete family.mother.husband;
+  </script>
+  
+  
+  <!-- Outgoing references do not matter. Only incoming ones can make an object reachable. So, John is now unreachable and will be removed from the memory with all its data that also became unaccessible.
+  
+  After garbage collection: 
+  
+  Unreachable island
+  It is possible that the whole island of interlinked objects becomes unreachable and is removed from the memory.
+  
+  The source object is the same as above. Then: -->
+  <script>
+  family = null;
+  </script>
+  
+  <!-- It’s obvious that John and Ann are still linked, both have incoming references. But that’s not enough.
+  
+  The former "family" object has been unlinked from the root, there’s no reference to it any more, so the whole island becomes unreachable and will be removed. -->
+  
+  
+  
+  <!-- Internal algorithms
+  The basic garbage collection algorithm is called “mark-and-sweep”.
+  
+  The following “garbage collection” steps are regularly performed:
+  
+  The garbage collector takes roots and “marks” (remembers) them.
+  Then it visits and “marks” all references from them.
+  Then it visits marked objects and marks their references. All visited objects are remembered, so as not to visit the same object twice in the future.
+  …And so on until every reachable (from the roots) references are visited.
+  All objects except marked ones are removed. -->
+  
+  
+  
+  
+  <!-- 
+  Summary
+  The main things to know:
+  
+  Garbage collection is performed automatically. We cannot force or prevent it.
+  Objects are retained in memory while they are reachable.
+  Being referenced is not the same as being reachable (from a root): a pack of interlinked objects can become unreachable as a whole, as we’ve seen in the example above. -->
+</body>
+</html>
