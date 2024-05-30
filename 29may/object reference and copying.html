@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- JavaScript is based on a fundamental object-oriented paradigm. Objects in JavaScript, like
+     items in many other programming languages, can be compared to real-world objects.  -->
+
+     <!-- An object in JavaScript is a self-contained entity with attributes and a type. Consider a car as an example. A car is a physical object with qualities. A car has a colour, a pattern, a weight, a material made of, and so on. JavaScript objects, too, can have properties that determine their traits. -->
+
+
+     <!-- There are times when we need to clone or copy an object in JavaScript. Copying an object is a confusing task. In this article, we will discuss this referencing of objects. -->
+
+     <!-- Shallow and Deep Copy
+While copying objects in Javascript, we often get confused between deep copy and shallow copy. So, without making it more complex, we’ll explain this with the help of an example.
+
+ 
+
+Let’s assume A and B are objects. If A is assigned to B, when changing the value of A, check to see if the value of B changes. 
+
+ 
+
+If B changes along with A, it suggests that B is a shallow copy of A. 
+ 
+If B does not change, it is a deep copy of A.
+
+Deep copy and shallow copy are primarily used for the reference data type parameter. A shallow copy means copying only the reference address, while a deep copy entails cloning the object. -->
+
+
+<!-- The Basic Approach
+You must be thinking that why can’t we simply use the (=) operator to copy the objects? 
+
+Well, we’ll show you why.
+
+ 
+
+Objects in JavaScript are reference types. And reference types don't hold values, they are a pointer to the value in memory. 
+
+ 
+
+When we try to copy the object with the help of the assign(=) operator, we don’t create a new object. The assignment operator simply assigns the address of the previous object to a new variable.
+
+ 
+Let us look at one example: -->
+<script>
+    let obj={
+       Name:'Vaishnavi',
+       Id:'BTBT201813'};
+       
+    let obj2=obj;
+    
+    console.log(obj);
+    console.log(obj2);
+    
+    obj2.Id='BTBT201810';
+    
+    console.log(obj);
+    console.log(obj2);
+    </script>
+    
+    <!-- 
+    Output:
+    { Name: 'Vaishnavi', Id: 'BTBT201813' }
+    { Name: 'Vaishnavi', Id: 'BTBT201813' }
+    { Name: 'Vaishnavi', Id: 'BTBT201810' }
+    { Name: 'Vaishnavi', Id: 'BTBT201810' } -->
+    
+    <!-- Explanation:
+    
+    In the above example, we can clearly see that if we make any change in the first object, it gets reflected in the new object as well. This is because both the objects are referencing the same memory location. To solve this problem, JavaScript provides a variety of ways. 
+    
+    Some important methods to achieve this are given below, along with their problems and solutions. -->
+    
+    <!-- Using Methods
+    To copy an object in JavaScript, we have three significant options. Let’s see them one by one. -->
+    
+    <!-- 1. The Object.assign Method
+    The Object.assign() method copies all the properties from one or more source objects to a target object. It returns the modified target object. This method will help us fix the problem we saw in the basic approach given above. -->
+    
+    <!-- Syntax: -->
+    
+    <script>
+    Object.assign(target, ...sources)
+    
+    // Let’s understand with the help of an example.
+    
+    let obj1={
+        Name:'Vaishnavi'
+    }
+    let obj2 = Object.assign({},obj)
+    
+    console.log(obj);
+    console.log(obj2);
+    
+    obj2.Name='Shubhi';
+    
+    console.log(obj1);
+    console.log(obj2);
+    </script>
+     
+    <!-- Output:
+    
+    { Name: 'Vaishnavi' }
+    { Name: 'Vaishnavi' }
+    { Name: 'Vaishnavi' }
+    { Name: 'Shubhi' } -->
+    
+    <!-- 2. The Spread Operator
+    We can perform object copying by using the spread operator introduced in ES6. Let’s see with the help of an example. -->
+    <script>
+    let obj3={
+       Name:'Vaishnavi'}
+    
+    let obj2 = { ...obj}
+    
+    console.log(obj3);
+    console.log(obj2);
+    
+    obj2.Name='Shubhi';
+    
+    
+    console.log(obj3);
+    console.log(obj2);
+    </script>
+    
+    
+    <!-- Output:
+    
+    { Name: 'Vaishnavi' }
+    { Name: 'Vaishnavi' }
+    { Name: 'Vaishnavi' }
+    { Name: 'Shubhi' }
+    
+    
+    But, this is definitely not the full proof solution, because the moment we start getting a nested object inside our first object, this will not work.
+     -->
+    
+     <!-- Let’s see how. -->
+    <script>
+    let obj4={
+       Name:'Vaishnavi',
+       Skills: {Primary: 'JavaScript', Secondary: 'Android'}
+    }
+    let obj2 = { ...obj4}
+    console.log(obj4);
+    console.log(obj2);
+    
+    obj2.Name='Shubhi';
+    obj2.Skills.Primary='Full Stack';
+    
+    console.log(obj4);
+    console.log(obj2);
+    </script>
+    <!-- 
+    Output:
+    
+    { Name: 'Vaishnavi',
+     Skills: { Primary: 'JavaScript', Secondary: 'Android' } }
+    { Name: 'Vaishnavi',
+     Skills: { Primary: 'JavaScript', Secondary: 'Android' } }
+    { Name: 'Vaishnavi',
+     Skills: { Primary: 'Full Stack', Secondary: 'Android' } }
+    { Name: 'Shubhi',
+     Skills: { Primary: 'Full Stack', Secondary: 'Android' } }
+    
+    Explanation:
+    
+    We can clearly see that we changed the primary skill of object 2 in the above code and this change got reflected in object 1 as well. -->
+    
+    
+    
+    <!-- Comparison by reference
+    Two objects are equal only if they are the same object.
+    
+    For instance, here a and b reference the same object, thus they are equal: -->
+    <script>
+    let a1 = {};
+    let b1 = a1; // copy the reference
+    
+    alert( a1 == b1 ); // true, both variables reference the same object
+    alert( a1 === b1 ); // true
+    // And here two independent objects are not equal, even though they look alike (both are empty):
+    
+    let a2 = {};
+    let b2 = {}; // two independent objects
+    
+    alert( a == b ); // false
+    </script>
+    
+    <!-- For comparisons like obj1 > obj2 or for a comparison against a primitive obj == 5, objects are converted to primitives. We’ll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely – usually they appear as a result of a programming mistake. -->
+    
+    
+    
+    <!-- Cloning and merging, Object.assign
+    So, copying an object variable creates one more reference to the same object.
+    
+    But what if we need to duplicate an object?
+    
+    We can create a new object and replicate the structure of the existing one, by iterating over its properties and copying them on the primitive level.
+    
+    Like this: -->
+    <script>
+    let user = {
+      name: "John",
+      age: 30
+    };
+    
+    let clone = {}; // the new empty object
+    
+    // let's copy all user properties into it
+    for (let key in user) {
+      clone[key] = user[key];
+    }
+    
+    // now clone is a fully independent object with the same content
+    clone.name = "Pete"; // changed the data in it
+    
+    alert( user.name ); // still John in the original object
+    </script>
+    
+    <!-- We can also use the method Object.assign.
+    
+    The syntax is:
+    
+    Object.assign(dest, ...sources)
+    The first argument dest is a target object.
+    Further arguments is a list of source objects.
+    It copies the properties of all source objects into the target dest, and then returns it as the result. -->
+    
+    <!-- For example, we have user object, let’s add a couple of permissions to it: -->
+    <script>
+    let user1 = { name: "John" };
+    
+    let permissions1 = { canView: true };
+    let permissions2 = { canEdit: true };
+    
+    // copies all properties from permissions1 and permissions2 into user
+    Object.assign(user1, permissions1, permissions2);
+    
+    // now user = { name: "John", canView: true, canEdit: true }
+    alert(user1.name); // John
+    alert(user1.canView); // true
+    alert(user1.canEdit); // true
+    </script>
+    
+    <!-- If the copied property name already exists, it gets overwritten: -->
+    <script>
+    let user4 = { name: "John" };
+    
+    Object.assign(user4, { name: "Pete" });
+    
+    alert(user4.name); // now user4 = { name: "Pete" }
+    </script>
+    
+    <!-- We also can use Object.assign to perform a simple object cloning: -->
+    <script>
+    let user5 = {
+      name: "John",
+      age: 30
+    };
+    
+    let clone = Object.assign({}, user5);
+    
+    alert(clone.name); // John
+    alert(clone.age); // 30
+    </script>
+    
+    <!-- Here it copies all properties of user into the empty object and returns it.
+    
+    There are also other methods of cloning an object, e.g. using the spread syntax clone = {...user}, covered later in the tutorial.
+    
+    Nested cloning
+    Until now we assumed that all properties of user are primitive. But properties can be references to other objects.
+    
+    Like this: -->
+    <script>
+    let user6= {
+      name: "John",
+      sizes: {
+        height: 182,
+        width: 50
+      }
+    };
+    
+    alert( user6.sizes.height ); // 182
+    </script>
+    
+    <!-- Now it’s not enough to copy clone.sizes = user.sizes, because user.sizes is an object, and will be copied by reference, so clone and user will share the same sizes: -->
+    <script>
+    let user7 = {
+      name: "John",
+      sizes: {
+        height: 182,
+        width: 50
+      }
+    };
+    
+    let clone = Object.assign({}, user7);
+    
+    alert( user7.sizes === clone.sizes ); // true, same object
+    
+    // user and clone share sizes
+    user7.sizes.width = 60;    // change a property from one place
+    alert(clone.sizes.width); // 60, get the result from the other one
+    </script>
+    
+</body>
+</html>
