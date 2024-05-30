@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- Optional chaining '?.' -->
+<!-- The optional chaining ‘?.’ is an error-proof way to access nested object properties, even if an intermediate property doesn’t exist.
+     It was recently introduced by ECMA International, Technical Committee 39 – ECMAScript which was authored by Claude Pache,
+      Gabriel Isenberg, Daniel Rosenwasser, Dustin Savery. It works similar to Chaining ‘.’ except that it does not report the error,
+       instead it returns a value which is undefined. It also works with function call when we try to make a call to a method which may not exist.
+
+When we want to check a value of the property which is deep inside a tree-like structure,
+ we often have to perform check whether intermediate nodes exist. -->
+
+<!-- Optional chaining (?.) is a feature in JavaScript that allows you to safely access deeply nested properties of an object without having 
+    to check each level for existence. If a property does not exist,
+     the expression short-circuits and returns undefined instead of throwing an error.
+
+How Optional Chaining Works
+When using optional chaining, the ?. operator checks if the value before it is null or undefined.
+ If it is, the entire expression returns undefined.
+  If the value is neither null nor undefined, it continues to evaluate the rest of the expression. -->
+
+<script>
+    let Value = user.dog && user.dog.name;
+    </script>
+    <!-- The Optional Chaining Operator allows a developer to handle many of those cases without repeating themselves and/or assigning intermediate results in temporary variables: -->
+    <script>
+    let Value1 = user.dog?.name;
+    </script>
+    <!-- Syntax:  -->
+    
+    <script>
+    obj?.prop
+    obj?.[expr]
+    arr?.[index]
+    func?.(args)
+    </script>
+    
+    
+    <!-- Example: Optional Chaining  -->
+    <script>
+    const user = {
+      dog: {
+        name: "Alex"
+      }
+    };
+     
+    console.log(user.cat?.name); //undefined
+    console.log(user.dog?.name); //Alex
+    console.log(user.cat.name);
+    </script>
+    
+    
+    <!-- Example: Optional Chaining with Function Call -->
+    <script>
+    let user1 = () => console.log("Alex");
+    let user2 = {
+      dog(){
+        console.log("I am Alex");
+      }
+    }
+    let user3 = {};
+     
+    user1?.();       // Alex
+    user2.dog?.();   // I am Alex
+    user3.dog();     // ERROR - Uncaught TypeError: 
+                     // user3.dog is not a function. 
+    user3.dog?.();   // Will not generate any error.
+    </script>
+    
+    
+    
+    
+    <!-- more  -->
+    
+    <!-- Example 1: Accessing Nested Properties
+    Without optional chaining: -->
+    
+    <script>
+    let user4 = { name: "Alice", address: { city: "Wonderland" } };
+    
+    let city = user4 && user4.address && user4.address.city;
+    
+    console.log(city); // Output: "Wonderland"
+    </script>
+    
+    <!-- With optional chaining: -->
+    <script>
+    let user5 = { name: "Alice", address: { city1: "Wonderland" } };
+    
+    let city1 = user5?.address?.city1;
+    
+    console.log(city); // Output: "Wonderland"
+    </script>
+    
+    <!-- If address is not defined: -->
+    
+    <script>
+    let user6 = { name: "Alice" };
+    
+    let city2 = user6?.address?.city2;
+    
+    console.log(city2); // Output: undefined
+    </script>
+    
+    <!-- Optional Chaining with Functions
+    Optional chaining can also be used to call methods that might not exist. -->
+    
+    <!-- Example 2: Calling Methods
+    Without optional chaining: -->
+    
+    <script>
+    let user7= {
+        greet: function() {
+            console.log("Hello!");
+        }
+    };
+    
+    user7.greet(); // Output: "Hello!"
+    
+    if (user7.greet) {
+        user7.greet();
+    } // Output: "Hello!"
+    </script>
+    
+    <!-- With optional chaining: -->
+    
+    <script>
+    let user8= {
+        greet: function() {
+            console.log("Hello!");
+        }
+    };
+    
+    user8.greet?.(); // Output: "Hello!"
+    </script>
+    
+    <!-- If greet method is not defined: -->
+    <script>
+    let user9 = {};
+    
+    user9.greet?.(); // No error, nothing happens
+    
+    </script>
+    
+    
+    <!-- Short-circuiting
+    As it was said before, the ?. immediately stops (“short-circuits”) the evaluation if the left part doesn’t exist.
+    
+    So, if there are any further function calls or operations to the right of ?., they won’t be made.
+    
+    For instance: -->
+    <script>
+    let user11= null;
+    let x = 0;
+    
+    user11?.sayHi(x++); // no "user", so the execution doesn't reach sayHi call and x++
+    
+    alert(x); // 0, value not incremented
+    </script>
+    
+    <!-- 
+    Other variants: ?.(), ?.[]
+    The optional chaining ?. is not an operator, but a special syntax construct, that also works with functions and square brackets.
+    
+    For example, ?.() is used to call a function that may not exist. -->
+    <script>
+    let userAdmin = {
+        admin() {
+          alert("I am admin");
+        }
+      };
+      
+      let userGuest = {};
+      
+      userAdmin.admin?.(); // I am admin
+      
+      userGuest.admin?.(); // nothing happens (no such method)
+    </script>
+    
+      <!-- Here, in both lines we first use the dot (userAdmin.admin) to get admin property, 
+      because we assume that the user object exists, so it’s safe read from it.
+      
+      Then ?.() checks the left part: if the admin function exists, then it runs (that’s so for userAdmin). 
+      Otherwise (for userGuest) the evaluation stops without errors. -->
+    <script>
+    let key = "firstName";
+    
+    let user12 = {
+      firstName: "John"
+    };
+    
+    let user13 = null;
+    
+    alert( user12?.[key] ); // John
+    alert( user13?.[key] ); // undefined
+    // Also we can use ?. with delete:
+    
+    delete user?.name; // delete user.name if user exists
+    </script>
+    
+    
+    <!-- Summary
+    The optional chaining ?. syntax has three forms:
+    
+    obj?.prop – returns obj.prop if obj exists, otherwise undefined.
+    obj?.[prop] – returns obj[prop] if obj exists, otherwise undefined.
+    obj.method?.() – calls obj.method() if obj.method exists, otherwise returns undefined. -->
+</body>
+</html>
