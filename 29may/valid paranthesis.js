@@ -37,22 +37,22 @@ s consists of parentheses only '()[]{}'.
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function (s) {
-  const stack = [];
-  const parens = "() {} []";
+var isValid = function(s) {
+  const stack =[];
+  const validPairs='() {} []';
   let i = 0;
-  while (i < s.length) {
-    stack.push(s[i]);
-    i++;
-
-    let open = stack[stack.length - 2];
-    let closed = stack[stack.length - 1];
-
-    let potParens = open + closed;
-    if (parens.includes(potParens)) {
-      stack.pop();
-      stack.pop();
-    }
+  
+  while (i<s.length) {
+      stack.push(s[i]);
+      i++;
+      let lastOpen =stack[stack.length - 2];
+      let lastClose =stack[stack.length - 1];
+      
+      let potentialPair=lastOpen + lastClose;
+      if (validPairs.includes(potentialPair)) {
+          stack.pop();
+          stack.pop();
+      }
   }
   return stack.length === 0;
 };
