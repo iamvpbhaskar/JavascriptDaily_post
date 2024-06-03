@@ -1,0 +1,74 @@
+<!-- Object.keys, Object.values, Object.entries
+Example: Extracting keys, values, and key-value pairs from an object -->
+
+const user = {
+  name: 'John',
+  age: 30,
+  isAdmin: true
+};
+
+const keys = Object.keys(user);
+console.log(keys); // Output: ["name", "age", "isAdmin"]
+
+const values = Object.values(user);
+console.log(values); // Output: ["John", 30, true"]
+
+const entries = Object.entries(user);
+console.log(entries); 
+
+// Output: [ ["name", "John"], ["age", 30], ["isAdmin", true] ]
+
+Explanation:
+These examples demonstrate the usage of Object.keys(), Object.values(), and Object.entries() to extract keys, values, and key-value pairs from the user object respectively. These methods provide convenient ways to access and work with object properties, promoting code readability and efficiency.
+
+
+
+Object.keys/values/entries Ignore Symbolic Properties
+Example: Ignoring symbolic properties when extracting keys, values, and entries
+
+const user = {
+  name: 'John',
+  age: 30,
+  [Symbol('id')]: 'uniqueId'
+};
+
+const keys = Object.keys(user);
+console.log(keys); // Output: ["name", "age"]
+
+const values = Object.values(user);
+console.log(values); // Output: ["John", 30]
+
+const entries = Object.entries(user);
+console.log(entries); 
+
+// Output: [ ["name", "John"], ["age", 30] ]
+Explanation:
+In this example, even though the user object contains a symbolic property, Symbol('id'), it is ignored when extracting keys, values, and entries using Object.keys(), Object.values(), and Object.entries() respectively. These methods focus on enumerable string-keyed properties, excluding symbolic properties.
+
+
+
+Transforming objects - Object.fromEntries
+Example: Converting an array of key-value pairs into an object
+
+const keyValuePairs = [
+  ['name', 'John'],
+  ['age', 30],
+  ['isAdmin', true]
+];
+
+const obj = Object.fromEntries(keyValuePairs);
+console.log(obj); 
+
+// Output: { name: 'John', age: 30, isAdmin: true }
+Explanation:
+Here, Object.fromEntries() is used to transform an array of key-value pairs (keyValuePairs) into an object (obj). It takes an iterable of key-value pairs and returns a new object. This method is handy for converting data structures, such as the result of Object.entries() back into an object format.
+
+
+
+
+
+
+
+
+
+
