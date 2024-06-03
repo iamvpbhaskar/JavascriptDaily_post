@@ -1,0 +1,232 @@
+<!-- Arrays provide a lot of methods. To make things easier, in this chapter, they are split into groups. -->
+
+
+
+To Add/Remove Elements:
+push(...items)
+
+Adds items to the end of the array.
+Examples:
+
+javascript
+
+let arr = [1, 2, 3];
+arr.push(4); // [1, 2, 3, 4]
+arr.push(5, 6); // [1, 2, 3, 4, 5, 6]
+pop()
+
+Removes the last element from the array.
+Examples:
+
+javascript
+
+let arr = [1, 2, 3, 4];
+let lastElement = arr.pop(); // lastElement is 4, arr is [1, 2, 3]
+lastElement = arr.pop(); // lastElement is 3, arr is [1, 2]
+shift()
+
+Removes the first element from the array.
+Examples:
+
+javascript
+
+let arr = [1, 2, 3, 4];
+let firstElement = arr.shift(); // firstElement is 1, arr is [2, 3, 4]
+firstElement = arr.shift(); // firstElement is 2, arr is [3, 4]
+unshift(...items)
+
+Adds items to the beginning of the array.
+Examples:
+
+javascript
+
+let arr = [3, 4];
+arr.unshift(2); // [2, 3, 4]
+arr.unshift(0, 1); // [0, 1, 2, 3, 4]
+splice(pos, deleteCount, ...items)
+
+Removes and/or adds elements at the specified position.
+Examples:
+
+javascript
+
+let arr = [1, 2, 3, 4];
+arr.splice(2, 1); // [1, 2, 4] - removed 1 element at index 2
+arr.splice(1, 0, 'a', 'b'); // [1, 'a', 'b', 2, 4] - added 'a' and 'b' at index 1
+slice(start, end)
+
+Returns a new array containing elements from start to end (not inclusive).
+Examples:
+
+javascript
+
+let arr = [1, 2, 3, 4];
+let slicedArr = arr.slice(1, 3); // [2, 3]
+slicedArr = arr.slice(2); // [3, 4]
+concat(...items)
+
+Merges arrays into a new array.
+Examples:
+
+javascript
+
+let arr1 = [1, 2];
+let arr2 = [3, 4];
+let newArr = arr1.concat(arr2); // [1, 2, 3, 4]
+newArr = arr1.concat([5, 6], [7, 8]); // [1, 2, 5, 6, 7, 8]
+To Search Among Elements:
+indexOf(item, pos) / lastIndexOf(item, pos)
+
+Finds the index of an item, starting from the position pos.
+Examples:
+
+javascript
+
+let arr = [1, 2, 3, 2, 1];
+let index = arr.indexOf(2); // 1
+let lastIndex = arr.lastIndexOf(2); // 3
+includes(value)
+
+Checks if the array contains a specific value.
+Examples:
+
+
+
+let arr = [1, 2, 3];
+let hasTwo = arr.includes(2); // true
+let hasFour = arr.includes(4); // false
+find(func) / filter(func)
+
+find returns the first element that satisfies the function, filter returns all elements that satisfy the function.
+Examples:
+
+
+
+let arr = [1, 2, 3, 4];
+let firstEven = arr.find(num => num % 2 === 0); // 2
+let allEvens = arr.filter(num => num % 2 === 0); // [2, 4]
+findIndex(func)
+
+Returns the index of the first element that satisfies the function.
+Examples:
+
+
+
+let arr = [1, 2, 3, 4];
+let index = arr.findIndex(num => num % 2 === 0); // 1
+To Iterate Over Elements:
+forEach(func)
+
+Calls the function for each element.
+Examples:
+
+
+
+let arr = [1, 2, 3];
+arr.forEach(num => console.log(num)); // Logs 1, 2, 3
+To Transform the Array:
+map(func)
+
+Creates a new array with the results of calling the function on every element.
+Examples:
+
+
+
+let arr = [1, 2, 3];
+let squares = arr.map(num => num * num); // [1, 4, 9]
+sort(func)
+
+Sorts the array in-place and returns it.
+Examples:
+
+
+
+let arr = [3, 1, 4, 2];
+arr.sort(); // [1, 2, 3, 4]
+arr.sort((a, b) => b - a); // [4, 3, 2, 1]
+reverse()
+
+Reverses the array in-place and returns it.
+Examples:
+
+
+
+let arr = [1, 2, 3];
+arr.reverse(); // [3, 2, 1]
+split / join
+
+split converts a string to an array, join converts an array to a string.
+Examples:
+
+
+
+let str = "1,2,3";
+let arr = str.split(','); // ["1", "2", "3"]
+let newStr = arr.join('-'); // "1-2-3"
+reduce(func, initial) / reduceRight(func, initial)
+
+Applies a function against an accumulator and each element to reduce it to a single value.
+Examples:
+
+
+
+let arr = [1, 2, 3, 4];
+let sum = arr.reduce((acc, num) => acc + num, 0); // 10
+let product = arr.reduce((acc, num) => acc * num, 1); // 24
+Additionally:
+Array.isArray(value)
+
+Checks if the value is an array.
+Examples:
+
+
+
+let arr = [1, 2, 3];
+let isArray = Array.isArray(arr); // true
+let isNotArray = Array.isArray(123); // false
+arr.some(fn) / arr.every(fn)
+
+some checks if at least one element satisfies the function, every checks if all elements satisfy the function.
+Examples:
+
+
+
+let arr = [1, 2, 3, 4];
+let hasEven = arr.some(num => num % 2 === 0); // true
+let allEven = arr.every(num => num % 2 === 0); // false
+arr.fill(value, start, end)
+
+Fills the array with a value from start to end.
+Examples:
+
+
+
+let arr = [1, 2, 3, 4];
+arr.fill(0, 1, 3); // [1, 0, 0, 4]
+arr.copyWithin(target, start, end)
+
+Copies part of the array to another location in the same array.
+Examples:
+
+
+
+let arr = [1, 2, 3, 4, 5];
+arr.copyWithin(0, 3, 5); // [4, 5, 3, 4, 5]
+arr.flat(depth) / arr.flatMap(fn)
+
+flat creates a new array with all sub-array elements concatenated into it, flatMap first maps each element then flattens the result.
+Examples:
+
+
+
+let arr = [1, [2, [3, 4]]];
+let flatArr = arr.flat(2); // [1, 2, 3, 4]
+let flatMappedArr = arr.flatMap(num => [num, num * 2]); // [1, 2, 2, 4, 3, 6, 4, 8]
+Conclusion
+Array methods in JavaScript provide powerful tools for manipulating and transforming arrays. Understanding these methods enables efficient and readable code for a wide variety of tasks, from simple element addition/removal to complex transformations and searches. Utilizing these methods appropriately can greatly enhance the performance and clarity of your code.
+
+
+
+
+
+
