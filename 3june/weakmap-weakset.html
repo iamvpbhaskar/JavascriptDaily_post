@@ -1,0 +1,271 @@
+<!-- Certainly! Let's combine the definitions, examples, and practice problems for each topic to ensure a more cohesive understanding.
+
+### WeakMap
+
+#### Definition
+WeakMap is fundamentally different in this aspect. It doesn’t prevent garbage-collection of key objects.
+
+A `WeakMap` is a collection of key/value pairs where the keys are objects and the values can be arbitrary values. The main characteristic of `WeakMap` is that it holds "weak" references to its keys, meaning that if there are no other references to the key object, it can be garbage-collected, along with its associated value. This makes `WeakMap` suitable for situations where you want to associate additional data with objects without preventing those objects from being garbage-collected.
+
+#### Use Cases
+
+1. **Additional Data**
+   - When you need to attach metadata or auxiliary data to objects without modifying the objects themselves.
+
+2. **Caching**
+   - Storing computed values or other data associated with objects, where the cache can be automatically cleaned up when the object is no longer needed. -->
+
+#### Example 
+
+1. **Additional Data Example**
+
+let userMetadata = new WeakMap();
+
+   function addMetadata(user, metadata) {
+     userMetadata.set(user, metadata);
+   }
+
+   function getMetadata(user) {
+     return userMetadata.get(user);
+   }
+
+   let user1 = { name: 'Alice' };
+   let user2 = { name: 'Bob' };
+
+   addMetadata(user1, { role: 'admin' });
+   addMetadata(user2, { role: 'user' });
+
+   console.log(getMetadata(user1)); // { role: 'admin' }
+   console.log(getMetadata(user2)); // { role: 'user' }
+
+   user1 = null; // user1 can now be garbage-collected
+   
+
+2. **Caching **
+   
+   let cache = new WeakMap();
+
+   function computeHeavyTask(obj) {
+     if (!cache.has(obj)) {
+       let result = /* heavy computation */;
+       cache.set(obj, result);
+       return result;
+     }
+     return cache.get(obj);
+   }
+
+   let data = { key: 'value' };
+   let result = computeHeavyTask(data);
+   console.log(result); // computed result
+
+   data = null; // data and its cached result can now be garbage-collected
+   
+
+#### Practice Problems
+
+1. **Create and Manipulate a WeakMap**
+   
+   let wm = new WeakMap();
+   let key1 = { id: 1 };
+   let key2 = { id: 2 };
+   let key3 = { id: 3 };
+
+   wm.set(key1, 'value1');
+   wm.set(key2, 'value2');
+   wm.set(key3, 'value3');
+
+   console.log(wm.get(key1)); // 'value1'
+   console.log(wm.get(key2)); // 'value2'
+   console.log(wm.get(key3)); // 'value3'
+   
+
+2. **Nullify Key and Check WeakMap**
+   
+   let wm = new WeakMap();
+   let key = { id: 1 };
+
+   wm.set(key, 'some data');
+   console.log(wm.has(key)); // true
+
+   key = null; // key is now eligible for garbage collection
+   // After a while, the entry for key will be removed
+   
+
+3. **Store Computed Properties**
+   
+   let propertyCache = new WeakMap();
+
+   function getProperty(obj) {
+     if (!propertyCache.has(obj)) {
+       let value = /* some computation based on obj */;
+       propertyCache.set(obj, value);
+       return value;
+     }
+     return propertyCache.get(obj);
+   }
+
+   let obj = { name: 'Test' };
+   console.log(getProperty(obj)); // computed value
+   obj = null; // obj and its computed property can now be garbage-collected
+   
+
+4. **Caching with WeakMap**
+   
+   let cache = new WeakMap();
+
+   function fetchData(apiObj) {
+     if (!cache.has(apiObj)) {
+       let data = /* fetch data from API */;
+       cache.set(apiObj, data);
+       return data;
+     }
+     return cache.get(apiObj);
+   }
+
+   let apiCall = { endpoint: '/data' };
+   console.log(fetchData(apiCall)); // fetched data
+   apiCall = null; // apiCall and its cached data can now be garbage-collected
+   
+
+### WeakSet
+
+#### Definition
+A `WeakSet` is a collection of objects, where an object can only appear once. The main characteristic of `WeakSet` is that it holds "weak" references to its objects, meaning that if there are no other references to an object stored in the `WeakSet`, it can be garbage-collected. This makes `WeakSet` suitable for keeping track of objects without preventing them from being garbage-collected.
+
+#### Use Cases
+
+1. **Additional Data**
+   - Tracking objects without needing to keep them alive solely for the tracking purpose.
+
+2. **Caching**
+   - Remembering objects that you have seen or processed in some way, without affecting their lifecycle.
+
+#### Example Usage
+
+1. **Tracking Processed Objects**
+   
+   let processed = new WeakSet();
+
+   function process(obj) {
+     if (processed.has(obj)) {
+       console.log('Already processed:', obj);
+       return;
+     }
+     // Process the object
+     processed.add(obj);
+   }
+
+   let item1 = { id: 1 };
+   let item2 = { id: 2 };
+
+   process(item1); // Processed
+   process(item1); // Already processed
+
+   item1 = null; // item1 can now be garbage-collected
+   
+
+2. **Avoiding Reprocessing**
+   
+   let seen = new WeakSet();
+
+   function handleObject(obj) {
+     if (seen.has(obj)) {
+       return; // Skip if already seen
+     }
+     seen.add(obj);
+     // Perform operations on obj
+   }
+
+   let obj1 = { name: 'Widget' };
+   let obj2 = { name: 'Gadget' };
+
+   handleObject(obj1);
+   handleObject(obj1); // Will not process again
+   handleObject(obj2);
+
+   obj1 = null; // obj1 can now be garbage-collected
+   
+
+#### Practice 
+
+1. **Add and Check Objects in WeakSet**
+   
+   let ws = new WeakSet();
+   let obj1 = { id: 1 };
+   let obj2 = { id: 2 };
+   let obj3 = { id: 3 };
+
+   ws.add(obj1);
+   ws.add(obj2);
+   ws.add(obj3);
+
+   console.log(ws.has(obj1)); // true
+   console.log(ws.has(obj2)); // true
+   console.log(ws.has(obj3)); // true
+   
+
+2. **Nullify Object and Check WeakSet**
+   
+   let ws = new WeakSet();
+   let obj = { id: 1 };
+
+   ws.add(obj);
+   console.log(ws.has(obj)); // true
+
+   obj = null; // obj is now eligible for garbage collection
+   // After a while, obj will be removed from the WeakSet
+   
+
+3. **Tracking Processed Objects**
+   
+   let processedObjects = new WeakSet();
+
+   function processObject(obj) {
+     if (processedObjects.has(obj)) {
+       console.log('Object already processed:', obj);
+       return;
+     }
+     console.log('Processing object:', obj);
+     processedObjects.add(obj);
+   }
+
+   let object1 = { name: 'Object1' };
+   let object2 = { name: 'Object2' };
+
+   processObject(object1); // Processing object
+   processObject(object1); // Object already processed
+   processObject(object2); // Processing object
+
+   object1 = null; // object1 can now be garbage-collected
+   
+
+4. **Avoid Duplicate Processing**
+   
+   let seenObjects = new WeakSet();
+
+   function processUniqueObject(obj) {
+     if (seenObjects.has(obj)) {
+       console.log('Duplicate object, skipping:', obj);
+       return;
+     }
+     console.log('Processing unique object:', obj);
+     seenObjects.add(obj);
+   }
+
+   let obj1 = { type: 'Type1' };
+   let obj2 = { type: 'Type2' };
+
+   processUniqueObject(obj1); // Processing unique object
+   processUniqueObject(obj1); // Duplicate object, skipping
+   processUniqueObject(obj2); // Processing unique object
+
+   obj1 = null; // obj1 can now be garbage-collected
+   
+
+### Summary
+
+- **WeakMap** and **WeakSet** are special types of collections that allow objects to be garbage-collected if they are no longer referenced anywhere else in the application.
+- **WeakMap** is used for key/value pairs with object keys, while **WeakSet** is used for storing unique objects.
+- They are particularly useful for attaching additional data to objects or for caching purposes without affecting the lifecycle of the objects.
+
+By combining definitions, examples, and practice problems, you should be able to grasp how to use `WeakMap` and `WeakSet` effectively in your applications.
