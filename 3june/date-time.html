@@ -29,80 +29,80 @@ getFullYear()
 
 Definition: Gets the year (4 digits) of the specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(today.getFullYear()); // e.g., 2024
 getMonth()
 
 Definition: Gets the month (0-11) in the specified date according to local time. January is 0, February is 1, and so on.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(today.getMonth()); // e.g., 5 for June
 getDate()
 
 Definition: Gets the day of the month (1-31) for the specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(today.getDate()); // e.g., 4
 getHours()
 
 Definition: Gets the hour (0-23) in the specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(today.getHours()); // e.g., 14 for 2 PM
 getMinutes()
 
 Definition: Gets the minutes (0-59) in the specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(today.getMinutes()); // e.g., 30
 getSeconds()
 
 Definition: Gets the seconds (0-59) in the specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(today.getSeconds()); // e.g., 45
 getMilliseconds()
 
 Definition: Gets the milliseconds (0-999) in the specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(today.getMilliseconds()); // e.g., 500
 getDay()
 
 Definition: Gets the day of the week (0-6) for the specified date according to local time. Sunday is 0, Monday is 1, and so on.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(today.getDay()); // e.g., 2 for Tuesday
 getTimezoneOffset()
 
 Definition: Gets the difference, in minutes, between UTC and the local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(today.getTimezoneOffset()); // e.g., -480 for PST
 getTime()
 
 Definition: Gets the numeric value corresponding to the time for the specified date according to universal time, which is the number of milliseconds since January 1, 1970, 00:00:00 UTC.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(today.getTime()); // e.g., 1599277765000
 Setting Date Components
@@ -110,8 +110,8 @@ setFullYear(year, [month], [date])
 
 Definition: Sets the full year (4 digits) for a specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 today.setFullYear(2022, 11, 25); // Sets year to 2022, month to December, day to 25
 console.log(today);
@@ -119,8 +119,8 @@ setMonth(month, [date])
 
 Definition: Sets the month (0-11) for a specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 today.setMonth(6, 4); // Sets month to July, day to 4
 console.log(today);
@@ -128,8 +128,8 @@ setDate(date)
 
 Definition: Sets the day of the month (1-31) for a specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 today.setDate(15); // Sets day of the month to 15
 console.log(today);
@@ -137,8 +137,8 @@ setHours(hour, [min], [sec], [ms])
 
 Definition: Sets the hours (0-23) for a specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 today.setHours(10, 30, 15, 500); // Sets hours to 10, minutes to 30, seconds to 15, milliseconds to 500
 console.log(today);
@@ -146,8 +146,8 @@ setMinutes(min, [sec], [ms])
 
 Definition: Sets the minutes (0-59) for a specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 today.setMinutes(45, 30, 200); // Sets minutes to 45, seconds to 30, milliseconds to 200
 console.log(today);
@@ -155,8 +155,8 @@ setSeconds(sec, [ms])
 
 Definition: Sets the seconds (0-59) for a specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 today.setSeconds(25, 100); // Sets seconds to 25, milliseconds to 100
 console.log(today);
@@ -164,8 +164,8 @@ setMilliseconds(ms)
 
 Definition: Sets the milliseconds (0-999) for a specified date according to local time.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 today.setMilliseconds(500); // Sets milliseconds to 500
 console.log(today);
@@ -173,8 +173,8 @@ setTime(milliseconds)
 
 Definition: Sets the date and time value in milliseconds since January 1, 1970, 00:00:00 UTC.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 today.setTime(Date.now() + 3600000); // Sets time to 1 hour from now
 console.log(today);
@@ -183,16 +183,16 @@ Date to Number
 
 Definition: Converts a Date object to its numeric representation, which is the number of milliseconds since January 1, 1970, 00:00:00 UTC.
 Example:
-javascript
-Copy code
+
+
 let today = new Date();
 console.log(+today); // e.g., 1599277765000
 Date Difference
 
 Definition: Calculate the difference between two dates.
 Example:
-javascript
-Copy code
+
+
 let date1 = new Date('2023-01-01');
 let date2 = new Date('2023-12-31');
 let diff = date2 - date1; // Difference in milliseconds
@@ -202,30 +202,33 @@ Date.now()
 
 Definition: Returns the number of milliseconds elapsed since January 1, 1970, 00:00:00 UTC.
 Example:
-javascript
-Copy code
+
+
 console.log(Date.now()); // e.g., 1599277765000
 Date.parse()
 
 Definition: Parses a date string and returns the number of milliseconds since January 1, 1970, 00:00:00 UTC.
 Example:
-javascript
-Copy code
+
+
 let timestamp = Date.parse('2023-06-01T12:00:00Z');
 console.log(timestamp); // e.g., 1685625600000
-Practice Problems
+
+
+
+Practice Problem
+
 Get the current year, month, and day
 
-javascript
-Copy code
 let today = new Date();
 console.log(today.getFullYear()); // e.g., 2024
 console.log(today.getMonth()); // e.g., 5 for June
 console.log(today.getDate()); // e.g., 4
+
+
+
 Set a specific date and time
 
-javascript
-Copy code
 let someDate = new Date();
 someDate.setFullYear(2025);
 someDate.setMonth(10); // November
@@ -237,8 +240,8 @@ someDate.setMilliseconds(0);
 console.log(someDate);
 Calculate the difference between two dates in days
 
-javascript
-Copy code
+
+
 let startDate = new Date('2023-01-01');
 let endDate = new Date('2023-12-31');
 let timeDiff = endDate - startDate;
